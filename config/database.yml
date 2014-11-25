@@ -14,6 +14,3 @@ test:
   <<: *default
   database: db/shelvesy_test
 
-production:
-  <<: *default
-  database: db/shelvesy_prod
