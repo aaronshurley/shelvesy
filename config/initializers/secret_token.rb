@@ -1,1 +1,0 @@
-Shelvesy::Application.config.secret_key_base = 'f342da9dfa2c58479a00a7abed769f674aad3d6e6271ab2140a1038b605b8f64e69ab7342af0c47da615e9df2b786970d37a6430ed45bf71086b7984a2f2fd5d'
