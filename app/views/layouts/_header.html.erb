@@ -1,5 +1,6 @@
 <% if signed_in? %>
   <%= link_to "Books", "#/books/" %>
+  <%= link_to "Shelves", "#/shelves/" %>
   <%= current_user.email %>
   <%= button_to "Sign out", session_url, method: :delete %>
 <% else %>

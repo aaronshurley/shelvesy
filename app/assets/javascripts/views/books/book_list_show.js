@@ -13,7 +13,7 @@ Shelvesy.Views.BookListShow = Backbone.CompositeView.extend({
     var itemView = new Shelvesy.Views.BookListItemShow({
       model: book
     });
-    debugger
+    
     this.addSubview('.book-list', itemView);
   },
   

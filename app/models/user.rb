@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
 
   has_many :shelves
   has_many :books, through: :shelves, source: :books
+  has_many :reviews
+  has_many :comments
 
   attr_reader :password
   after_initialize :ensure_session_token
