@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: shelved_books
+#
+#  id         :integer          not null, primary key
+#  book_id    :integer          not null
+#  shelf_id   :integer          not null
+#  date_added :datetime         not null
+#  date_read  :datetime
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+#  column: value

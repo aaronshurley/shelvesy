@@ -7,5 +7,6 @@ Shelvesy::Application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :books, only: [:index, :show, :create]
     resources :shelves
+    resources :shelved_books
   end
 end

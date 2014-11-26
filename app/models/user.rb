@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
 
   has_many :shelves
+  has_many :books, through: :shelves, source: :books
 
   attr_reader :password
   after_initialize :ensure_session_token

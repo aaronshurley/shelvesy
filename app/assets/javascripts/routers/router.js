@@ -53,6 +53,8 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
     var showView = new Shelvesy.Views.ShelfShow({
       model: shelf
     });
+    
+    this._swapView(showView);
   },
   
   _swapView: function(view) {

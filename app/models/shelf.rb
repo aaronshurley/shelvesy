@@ -14,4 +14,6 @@ class Shelf < ActiveRecord::Base
   validates_uniqueness_of :name, scope: :user_id
 
   belongs_to :user
+  has_many :shelved_books
+  has_many :books, through: :shelved_books, source: :book, dependent: :destroy
 end
