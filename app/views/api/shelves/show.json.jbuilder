@@ -1,0 +1,1 @@
+json.extract! @shelf :id, :name, :user_id, :created_at, :udpated_at

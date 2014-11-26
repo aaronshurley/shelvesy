@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 5, allow_nil: true }
   validates :email, uniqueness: true
 
-  # associations here
+  has_many :shelves
 
   attr_reader :password
   after_initialize :ensure_session_token
