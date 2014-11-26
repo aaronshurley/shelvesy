@@ -8,5 +8,7 @@ Shelvesy::Application.routes.draw do
     resources :books, only: [:index, :show, :create]
     resources :shelves
     resources :shelved_books
+    resources :reviews
+    resources :comments
   end
 end

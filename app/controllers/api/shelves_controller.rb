@@ -5,7 +5,7 @@ module Api
       if @shelf.save
         render json: @shelf
       else
-        render json: @book.errors.full_messages, status: :unprocessable_entity
+        render json: @shelf.errors.full_messages, status: :unprocessable_entity
       end
     end
 

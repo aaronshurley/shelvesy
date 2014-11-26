@@ -3,6 +3,7 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
     this.$rootEl = options.$rootEl;
   },
   
+  // review these routes, maybe the below shouldn't have direct paths?
   routes: {
     '': 'index',
     'books/': 'booksIndex',
