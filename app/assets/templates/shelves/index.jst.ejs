@@ -1,0 +1,12 @@
+<h2>Shelves Index</h2>
+<div class='shelves-index'>
+  <ul class='shelves-list'>
+    <% shelves.each(function (shelf) { %>
+      <li>
+        <a href="#/shelves/<%= shelf.id %>">
+          <%= shelf.escape('name') %>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+</div>
