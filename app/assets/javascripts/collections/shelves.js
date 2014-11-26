@@ -3,6 +3,7 @@ Shelvesy.Collections.Shelves = Backbone.Collection.extend({
   model: Shelvesy.Models.Shelf,
   
   getOrFetch: function (id) {
+    debugger
     var shelf = this.get(id);
 
     if(!shelf) {

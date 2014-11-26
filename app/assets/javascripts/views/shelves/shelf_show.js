@@ -1,4 +1,4 @@
-Shelvesy.Views.ShelfShow = Backbone.View.extend({
+Shelvesy.Views.ShelfShow = Backbone.CompositeView.extend({
   template: JST['shelves/show'],
   
   initialize: function () {
@@ -15,5 +15,11 @@ Shelvesy.Views.ShelfShow = Backbone.View.extend({
     this.$el.html(content);
     
     return this;
-  }
+  },
+  
+  addBook: function(book) {
+    
+  },
+  
+  
 });

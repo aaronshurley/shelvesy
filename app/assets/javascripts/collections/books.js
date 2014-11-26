@@ -2,13 +2,19 @@ Shelvesy.Collections.Books = Backbone.Collection.extend({
   model: Shelvesy.Models.Book,
   url: 'api/books',
   
-  getOrFetch: function (id) {
+  initialize: function(models, options) {
+    if (options) {
+      this.shelf = options.shelf;
+    }
+  },
+  
+  getOrFetch: function(id) {
     var book = this.get(id);
 
     if(!book) {
       book = new Shelvesy.Models.Book({ id: id });
       book.fetch({
-        success: function () {
+        success: function() {
           this.add(book);
         }.bind(this)
       });
@@ -20,4 +26,4 @@ Shelvesy.Collections.Books = Backbone.Collection.extend({
   }
 });
 
-Shelvesy.Collections.books = new Shelvesy.Collections.Books();
+Shelvesy.Collections.books = new Shelvesy.Collections.Books;

@@ -17,6 +17,7 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
   
   booksIndex: function() {
     console.log("Router#booksIndex");
+    
     Shelvesy.Collections.books.fetch();
     
     var indexView = new Shelvesy.Views.BooksIndex({
@@ -49,7 +50,7 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
   
   shelfShow: function(id) {
     console.log("Router#shelfShow");
-    var shelf = Shelvesy.Collections.shelves.getOrFetch(id);
+    var shelf = new Shelvesy.Collections.shelves.getOrFetch(id);
     var showView = new Shelvesy.Views.ShelfShow({
       model: shelf
     });
