@@ -1,9 +1,15 @@
 Shelvesy.Collections.Shelves = Backbone.Collection.extend({
-  url: 'api/shelves',
   model: Shelvesy.Models.Shelf,
+  url: 'api/shelves',
   
-  getOrFetch: function (id) {
-    debugger
+  initialize: function(models, options){
+    if (options) {
+      this.user = options.user;
+    }
+  },
+  
+  getOrFetch: function(id) {
+    
     var shelf = this.get(id);
 
     if(!shelf) {
@@ -21,4 +27,4 @@ Shelvesy.Collections.Shelves = Backbone.Collection.extend({
   }
 });
 
-Shelvesy.Collections.shelves = new Shelvesy.Collections.Shelves();
+Shelvesy.Collections.shelves = new Shelvesy.Collections.Shelves;

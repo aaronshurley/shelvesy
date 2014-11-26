@@ -1,0 +1,7 @@
+in books/list_item
+<h4><%= book.escape('title') %></h4>
+<img src="<%= book.escape('img_url') %>"><br>
+<strong>Author</strong>: <%= book.escape('author') %><br>
+<strong>ISBN</strong>: <%= book.escape('isbn') %>
+<h4>Description</h4>
+<%= book.get('description') %>

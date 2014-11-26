@@ -1,4 +1,4 @@
-Shelvesy.Views.BooksIndex = Backbone.View.extend({
+Shelvesy.Views.BooksIndex = Backbone.CompositeView.extend({
   template: JST['books/index'],
   
   initialize: function () {

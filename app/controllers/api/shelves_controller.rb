@@ -15,8 +15,8 @@ module Api
     end
 
     def show
-      @shelf = Shelf.find(params[:id])
-      render json: @shelf
+      @shelf = Shelf.includes(:user).find(params[:id])
+      render :show
     end
 
     private
