@@ -3,8 +3,15 @@ window.Shelvesy = {
   Collections: {},
   Views: {},
   Routers: {},
-  Utils: {},
   initialize: function() {
-    // initialize router here
+    new Shelvesy.Routers.Router({
+      $rootEl: $('#content')
+    });
+    Backbone.history.start();
   }
 };
+
+// might not need the below?
+$(document).ready(function(){
+  Shelvesy.initialize();
+});

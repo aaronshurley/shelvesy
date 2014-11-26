@@ -4,7 +4,7 @@ Shelvesy::Application.routes.draw do
   resources :users, only: [:new, :create]
   resource :session, only: [:new, :create, :destroy]
 
-  # namespace :api, defaults: { format: :json } do
-#     resources :books
-#   end
+  namespace :api, defaults: { format: :json } do
+    resources :books, only: [:index, :show, :create]
+  end
 end

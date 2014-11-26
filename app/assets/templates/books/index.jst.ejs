@@ -1,0 +1,12 @@
+<h2>Books Index</h2>
+<div class='books-index'>
+  <ul class='books-list'>
+    <% books.each(function (book) { %>
+      <li>
+        <a href="#/books/<%= book.id %>">
+          <%= book.escape('title') %>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+</div>
