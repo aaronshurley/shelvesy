@@ -11,6 +11,6 @@
 #
 
 class Book < ActiveRecord::Base
-  validates :title, :author, :isbn, presence: true
+  validates :title, :author, :isbn, :description, presence: true
   validates :title, :isbn, uniqueness: true
 end

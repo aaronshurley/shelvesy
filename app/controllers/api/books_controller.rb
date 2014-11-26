@@ -21,7 +21,7 @@ module Api
 
     private
     def book_params
-      params.require(:book).permit(:title, :author, :isbn)
+      params.require(:book).permit(:title, :author, :description, :isbn, :img_url)
     end
   end
 end
