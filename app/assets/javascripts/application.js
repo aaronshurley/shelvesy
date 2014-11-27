@@ -14,8 +14,8 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
+//= require bootstrap
 //= require shelvesy
-//= require bootstrap.min
 //= require_tree ../templates
 //= require_tree ./utils
 //= require_tree ./models

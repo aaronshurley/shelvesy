@@ -1,12 +1,23 @@
-$barColor: #f8f8f8;
+$barBackgroundColor: #f8f8f8;
 $barBorderColor: #e7e7e7;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
 
 body {
   padding-top: 50px;
+  margin-bottom: 60px;
+}
+
+.navbar-default {
+  background-color: $barBackgroundColor;
+  border-bottom: 1px solid $barBorderColor;
 }
 
 .book-list-item {
-  border-top: 1px solid lightgray;
+  border-top: 1px solid $barBorderColor;
   overflow: auto;
   padding: 10px;
 }
@@ -24,12 +35,16 @@ body {
   margin-left: 190px;
 }
 
-footer {
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   height: 60px;
-  background-color: $barColor;
+  background-color: $barBackgroundColor;
   border-top: 1px solid $barBorderColor;
-  margin-top: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
   text-align: center;
+}
+
+.footer p {
+  padding-top: 17px;
 }
