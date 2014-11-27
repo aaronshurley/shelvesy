@@ -10,7 +10,7 @@ module Api
     end
 
     def index
-      @shelves = Shelf.all
+      @shelves = current_user.shelves
       render json: @shelves
     end
 
