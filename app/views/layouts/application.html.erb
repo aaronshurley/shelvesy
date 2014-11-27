@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Shelvesy</title>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<%= render partial: "layouts/notifications" %>
-<%= render partial: "layouts/header" %>
-<%= yield %>
-
-</body>
+  <head>
+    <title>Shelvesy</title>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= render partial: "layouts/notifications" %>
+    <%= render partial: "layouts/header" %>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <%= render partial: "layouts/footer" %>
+  </body>
 </html>

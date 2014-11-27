@@ -1,9 +1,30 @@
-<% if signed_in? %>
-  <%= link_to "Books", "#/books/" %>
-  <%= link_to "Shelves", "#/shelves/" %>
-  <%= current_user.email %>
-  <%= button_to "Sign out", session_url, method: :delete %>
-<% else %>
-  <%= link_to "Log in", new_session_url %>
-  <%= link_to "Sign up", new_user_url %>
-<% end %>
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">shelvesy</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#/books/">Books</a></li>
+        <li><a href="#/shelves/">Shelves</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if signed_in? %>
+          <li><a href="#"><%= current_user.email %></a></li>
+          <li><%= link_to "Sign out", session_url, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Log in", new_session_url %></li>
+          <li><%= link_to "Sign up", new_user_url %></li>
+        <% end %>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
