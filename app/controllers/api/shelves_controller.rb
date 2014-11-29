@@ -1,7 +1,7 @@
 module Api
   class ShelvesController < ApplicationController
     def create
-      @shelf = Shelf.new(shelf_params)
+      @shelf = current_user.shelves.new(shelf_params)
       if @shelf.save
         render json: @shelf
       else
@@ -9,13 +9,19 @@ module Api
       end
     end
 
+    def destroy
+      @shelf = current_user.shelves.find(params[:id])
+      @shelf.try(:destroy)
+      render json: {}
+    end
+
     def index
       @shelves = current_user.shelves
-      render json: @shelves
+      render :index
     end
 
     def show
-      @shelf = Shelf.includes(:user).find(params[:id])
+      @shelf = Shelf.includes(:user, :books).find(params[:id])
       render :show
     end
 

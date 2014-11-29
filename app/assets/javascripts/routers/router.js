@@ -43,7 +43,7 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
   shelvesIndex: function() {
     console.log("Router#shelvesIndex");
     Shelvesy.Collections.shelves.fetch();
-    
+    var user_id = Shelvesy.Collections.shelves
     var indexView = new Shelvesy.Views.ShelvesIndex({
       collection: Shelvesy.Collections.shelves
     });
