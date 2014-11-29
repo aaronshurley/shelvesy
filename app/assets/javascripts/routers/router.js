@@ -3,11 +3,11 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
     this.$rootEl = options.$rootEl;
   },
   
-  // review these routes, maybe the below shouldn't have direct paths?
   routes: {
     '': 'index',
     'books/': 'booksIndex',
     'books/:id': 'bookShow',
+    'books/shelved/': 'shelvedBookIndex',
     'shelves/': 'shelvesIndex',
     'shelves/:id': 'shelfShow'
   },
@@ -24,14 +24,35 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
     Shelvesy.Collections.books.fetch();
     
     var indexView = new Shelvesy.Views.BooksIndex({
-      collection: Shelvesy.Collections.books
+      collection: Shelvesy.Collections.books,
+      heading: 'All Books'
     });
+    this.updateNavbar("Books");
+    this._swapView(indexView);
+  },
+  
+  shelvedBookIndex: function() {
+    console.log("Router#shelvedBookIndex");
+    
+    var shelvedBook = new Shelvesy.Models.Book({
+      urlRoot: 'api/books/shelved'
+    });
+    
+    var shelvedCollection = new Shelvesy.Collections.Books();
+    shelvedCollection.url = 'api/books/shelved';
+    shelvedCollection.fetch();
+    
+    var indexView = new Shelvesy.Views.BooksIndex({
+      collection: shelvedCollection
+    });
+    
     this.updateNavbar("Books");
     this._swapView(indexView);
   },
   
   bookShow: function(id) {
     console.log("Router#bookShow");
+    Shelvesy.Collections.books.fetch();
     var book = Shelvesy.Collections.books.getOrFetch(id);
     var showView = new Shelvesy.Views.BookShow({
       model: book
@@ -43,7 +64,6 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
   shelvesIndex: function() {
     console.log("Router#shelvesIndex");
     Shelvesy.Collections.shelves.fetch();
-    var user_id = Shelvesy.Collections.shelves
     var indexView = new Shelvesy.Views.ShelvesIndex({
       collection: Shelvesy.Collections.shelves
     });
@@ -64,14 +84,17 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
   
   updateNavbar: function(page) {
     console.log("Router#updateNavbar");
-    var selector = 'ul#nav-main li' + ':contains("' + page + '")';
-    $('ul#nav-main li').removeClass("active");
+    var selector = 'ul#nav-main > li' + ':contains("' + page + '")';
+    $('ul#nav-main > li').removeClass("active");
     $(selector).addClass("active");
   },
   
-  _swapView: function(view) {
+  _swapView: function(view, callback) {
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$rootEl.html(view.render().$el);
+    if (callback) {
+      callback();
+    }
   }
 });

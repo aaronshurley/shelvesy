@@ -5,10 +5,13 @@ Shelvesy::Application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   namespace :api, defaults: { format: :json } do
-    resources :books, only: [:index, :show, :create]
+    resources :books do
+      get 'shelved', on: :collection
+    end
     resources :shelves
     resources :shelved_books
     resources :reviews
     resources :comments
+
   end
 end

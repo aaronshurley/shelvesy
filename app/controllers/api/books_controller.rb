@@ -19,6 +19,11 @@ module Api
       render json: @book
     end
 
+    def shelved
+      @books = current_user.books
+      render json: @books
+    end
+
     private
     def book_params
       params.require(:book).permit(:title, :author, :description, :isbn, :img_url)

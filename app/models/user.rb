@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
 
   attr_reader :password
   after_initialize :ensure_session_token
-  after_save :create_default_shelves
+  after_create :create_default_shelves
 
   # def gravatar_url
 #     "http://www.gravatar.com/avatar/#{ Digest::MD5.hexdigest(email) }"

@@ -16,4 +16,8 @@ class Book < ActiveRecord::Base
   validates :title, :author, :isbn, :description, presence: true
   validates :title, :isbn, uniqueness: true
 
+  has_many :shelved_books
+  has_many :shelves, through: :shelved_books
+  has_many :users, through: :shelves
+  has_many :reviews
 end

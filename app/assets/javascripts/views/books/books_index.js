@@ -9,10 +9,10 @@ Shelvesy.Views.BooksIndex = Backbone.CompositeView.extend({
   render: function() {
     console.log("BooksIndex#render");
     var content = this.template({
-      books: this.collection
+      books: this.collection,
+      heading: this.heading
     });
     this.$el.html(content);
-    
     return this;
   }
 });
