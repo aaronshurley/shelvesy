@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
 
   attr_reader :password
   after_initialize :ensure_session_token
+  after_save :create_default_shelves
 
   # def gravatar_url
 #     "http://www.gravatar.com/avatar/#{ Digest::MD5.hexdigest(email) }"
@@ -52,5 +53,11 @@ class User < ActiveRecord::Base
 
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)
+  end
+
+  def create_default_shelves
+    Shelf.new(name: "Currently Reading", user_id: self.id).save!
+    Shelf.new(name: "Read", user_id: self.id).save!
+    Shelf.new(name: "To Read", user_id: self.id).save!
   end
 end
