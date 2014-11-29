@@ -7,9 +7,13 @@
           data-shelf-id="<%= shelf.id %>">
           <%= shelf.escape('name') %>
         </a>
+        <% if (!((shelf.escape('name') === 'Currently-Reading') ||
+                (shelf.escape('name') === 'Read') ||
+                (shelf.escape('name') === 'To Read'))) { %>
         <a href="javaScript:void(0);" class="remove-shelf">
           <span class="glyphicon glyphicon-remove" data-shelf-id="<%= shelf.id %>"></span>
         </a>
+        <% } %>
       </li>
     <% }) %>
   </ul>
