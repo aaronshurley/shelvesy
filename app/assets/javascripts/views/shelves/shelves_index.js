@@ -1,9 +1,13 @@
 Shelvesy.Views.ShelvesIndex = Backbone.CompositeView.extend({
   template: JST['shelves/index'],
   
+  events: {
+    'click a.remove-shelf': 'removeShelf'
+  },
+  
   initialize: function () {
     console.log("ShelvesIndex#initialize");
-    this.listenTo(this.collection, 'sync', this.render);
+    this.listenTo(this.collection, 'add remove sync', this.render);
   },
   
   render: function() {
@@ -22,9 +26,18 @@ Shelvesy.Views.ShelvesIndex = Backbone.CompositeView.extend({
       collection: this.collection
     });
     this.addSubview('.shelves-footer', formView);
-    // var showView = new Shelvesy.Views.BookListShow({
-//       collection: this.collection
-//     });
-//     this.addSubview('.shelf-books', showView);
+  },
+  
+  removeShelf: function (event) {
+    event.preventDefault();
+    var $target = $(event.target);
+    console.log("clicked on " + $target.data("shelf-id"));
+    
+    var $target = $(event.target),
+        shelfId = $target.data('shelf-id'),
+        shelves = this.collection,
+        shelfToRemove = shelves.getOrFetch(shelfId),
+        shelfSubviews = this.subviews('.shelves-list');
+    shelfToRemove.destroy();
   }
 });

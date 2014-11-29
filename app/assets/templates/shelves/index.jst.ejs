@@ -3,8 +3,12 @@
   <ul class='shelves-list'>
     <% shelves.each(function (shelf) { %>
       <li>
-        <a href="#/shelves/<%= shelf.id %>">
+        <a href="#/shelves/<%= shelf.id %>"
+          data-shelf-id="<%= shelf.id %>">
           <%= shelf.escape('name') %>
+        </a>
+        <a href="javaScript:void(0);" class="remove-shelf">
+          <span class="glyphicon glyphicon-remove" data-shelf-id="<%= shelf.id %>"></span>
         </a>
       </li>
     <% }) %>
