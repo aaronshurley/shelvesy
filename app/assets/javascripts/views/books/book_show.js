@@ -16,12 +16,11 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
   
   renderBtn: function() {
     console.log("BookShow#renderBtn");
-    Shelvesy.Collections.shelves.fetch();
     var btnView = new Shelvesy.Views.BookAddToShelf({
       collection: Shelvesy.Collections.shelves,
       model: this.model
     });
-    $('.book-add-to-shelf-btn').empty();
+    this.emptySubviews('.book-add-to-shelf-btn');
     this.addSubview('.book-add-to-shelf-btn', btnView);
   }
 });
