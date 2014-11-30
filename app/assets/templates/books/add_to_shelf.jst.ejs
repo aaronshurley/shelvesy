@@ -1,0 +1,21 @@
+
+
+<!-- Split button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-success">Want to Read!</button>
+  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+   <ul class="dropdown-menu" role="menu">
+    <% shelves.each(function(shelf) { %>
+    <li>
+      <a href="#" data-shelf-id="<%= shelf.id %>">
+        <%= shelf.escape('name') %>
+      </a>
+    </li>
+    <% }) %>
+    <li class="divider"></li>
+    <li><a href="#">Add New Shelf</a></li>
+  </ul>
+</div>
