@@ -52,3 +52,29 @@ body {
 .glyphicon-remove {
   color: red;
 }
+
+.book-show-left {
+  float: left;
+  width: 33%;
+  padding-right: 20px;
+  text-align: center;
+}
+
+.book-show-left img {
+  margin-top: 20px;
+}
+
+.book-show-right {
+  float: right;
+  width: 66%;
+}
+
+.book-reviews {
+  clear: both;
+  padding-top: 5px;
+}
+
+.book-reviews h3 {
+  border-top: 1px solid $barBorderColor;
+  padding-top: 20px;
+}

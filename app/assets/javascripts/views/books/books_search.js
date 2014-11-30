@@ -1,4 +1,4 @@
-Shelvesy.Views.BookShow = Backbone.View.extend({
+Shelvesy.Views.BookSearch = Backbone.View.extend({
   template: JST['books/search'],
   
   initialize: function () {

@@ -21,7 +21,9 @@ ferriss_books.each do |book|
     author: book.authors,
     isbn: book.isbn_10,
     description: book.description,
-    img_url: book.image_link)
+    img_url_small: book.image_link,
+    img_url_med: book.image_link(:zoom => 2)
+  )
 end
 
 # 10 books
@@ -31,5 +33,7 @@ palahniuk_books.each do |book|
     author: book.authors,
     isbn: book.isbn_10,
     description: book.description,
-    img_url: book.image_link)
+    img_url_small: book.image_link,
+    img_url_med: book.image_link(:zoom => 2)
+  )
 end

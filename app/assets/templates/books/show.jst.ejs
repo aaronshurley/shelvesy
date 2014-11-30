@@ -1,6 +1,15 @@
-<h2><%= book.escape('title') %></h2>
-<img src="<%= book.escape('img_url') %>"><br>
-<strong>Author</strong>: <%= book.escape('author') %><br>
-<strong>ISBN</strong>: <%= book.escape('isbn') %>
-<h4>Description</h4>
-<%= book.get('description') %>
+<div class="book-show-top">
+  <div class="book-show-left">
+    <img src="<%= book.escape('img_url_med') %>"><br>
+  </div>
+  <div class="book-show-right">
+    <h2><%= book.escape('title') %></h2>
+    <strong>Author</strong>: <%= book.escape('author') %><br>
+    <strong>ISBN</strong>: <%= book.escape('isbn') %>
+    <h4>Description</h4>
+    <%= book.get('description') %>
+  </div>
+</div>
+<div class="book-reviews">
+  <h3>Reviews</h3>
+</div>

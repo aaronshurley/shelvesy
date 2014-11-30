@@ -7,7 +7,6 @@ Shelvesy::Application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :books do
       get 'shelved', on: :collection
-      get 'search', on: :collection
     end
     resources :shelves
     resources :shelved_books
