@@ -64,17 +64,14 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
   
   bookShow: function(id) {
     console.log("Router#bookShow");
-    Shelvesy.Collections.shelves.fetch();
-    Shelvesy.Collections.books.fetch();
+    // Shelvesy.Collections.shelves.fetch();
+    // Shelvesy.Collections.books.fetch();
     
-    var shelvedCollection = new Shelvesy.Collections.Books();
-    shelvedCollection.url = 'api/books/shelved';
-    shelvedCollection.fetch();
+    var book = new Shelvesy.Models.Book({id: id});
+    book.fetch();
     
-    var book = Shelvesy.Collections.books.getOrFetch(id);
     var showView = new Shelvesy.Views.BookShow({
-      model: book,
-      collection: shelvedCollection
+      model: book
     });
     this.updateNavbar("Books");
     this._swapView(showView);
