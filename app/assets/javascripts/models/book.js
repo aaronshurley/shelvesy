@@ -40,11 +40,11 @@ Shelvesy.Models.Book = Backbone.Model.extend({
         date_added: new Date()
       }},
       success: function () {
-        console.log("YAY");
+        console.log("Book#addToShelf YAY");
         successCallback();
       },
       error: function () {
-        console.log("FAILED");
+        console.log("Book#addToShelf FAIL");
       }
     });
   },
@@ -59,12 +59,12 @@ Shelvesy.Models.Book = Backbone.Model.extend({
         book_id: this.id
       }},
       success: function (data) {
-        console.log("findThenDelete#YAY");
+        console.log("Book#findThenDelete YAY");
         var shelvedBookId = data[0].id;
         that.removeFromShelf(shelvedBookId, successCallback);
       },
       error: function () {
-        console.log("findThenDelete FAIL");
+        console.log("Book#findThenDelete FAIL");
       }
     });
   },
@@ -74,11 +74,11 @@ Shelvesy.Models.Book = Backbone.Model.extend({
       type: 'DELETE',
       url: '/api/shelved_books/' + shelvedBookId,
       success: function () {
-        console.log("removeFromShelfYAY");
+        console.log("Book#removeFromShelf YAY");
         successCallback();
       },
       error: function () {
-        console.log("removeFromShelf FAIL");
+        console.log("Book#removeFromShelf FAIL");
       }
     });
   }

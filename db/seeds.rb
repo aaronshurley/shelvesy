@@ -13,7 +13,7 @@ User.create(email: "test@gmail.com", password: "password")
   User.create(email: Faker::Internet.email, password: Faker::Internet.password)
 end
 
-# Populate with ~10 Books
+# Populate with ~13 Books
 # 3 books
 ferriss_books = GoogleBooks.search('Tim Ferriss', {count: 3})
 ferriss_books.each do |book|
@@ -35,5 +35,15 @@ palahniuk_books.each do |book|
     description: book.description,
     img_url_small: book.image_link,
     img_url_med: book.image_link(:zoom => 2)
+  )
+end
+
+# put half of the books on test's shelves
+user = User.find_by_email("test@gmail.com")
+Book.all.slice(0, Book.all.count / 2).each do |book|
+  ShelvedBook.create(
+    book_id: book.id,
+    shelf_id: user.shelves.sample.id,
+    date_added: DateTime.now
   )
 end
