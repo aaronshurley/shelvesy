@@ -14,7 +14,7 @@ Shelvesy.Views.BookAddToShelf = Backbone.View.extend({
   
   render: function() {
     console.log("BookAddToShelf#render");
-    debugger
+    
     var shelf = this.model.on_shelf();
     var on_shelf = false;
     if (shelf.attributes.name) {

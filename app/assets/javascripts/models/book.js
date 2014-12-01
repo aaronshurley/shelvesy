@@ -11,7 +11,7 @@ Shelvesy.Models.Book = Backbone.Model.extend({
   
   on_shelf: function() {
     if (!this._on_shelf) {
-      this._on_shelf = new Shelvesy.Models.Shelf(this);
+      this._on_shelf = new Shelvesy.Models.Shelf();
     }
     
     return this._on_shelf;
@@ -39,10 +39,11 @@ Shelvesy.Models.Book = Backbone.Model.extend({
         book_id: this.id,
         date_added: new Date()
       }},
-      success: function () {
+      success: function (resp) {
         console.log("Book#addToShelf YAY");
+        this.set(this.parse(resp));
         successCallback();
-      },
+      }.bind(this),
       error: function () {
         console.log("Book#addToShelf FAIL");
       }
@@ -75,8 +76,9 @@ Shelvesy.Models.Book = Backbone.Model.extend({
       url: '/api/shelved_books/' + shelvedBookId,
       success: function () {
         console.log("Book#removeFromShelf YAY");
+        this._on_shelf = undefined;
         successCallback();
-      },
+      }.bind(this),
       error: function () {
         console.log("Book#removeFromShelf FAIL");
       }
