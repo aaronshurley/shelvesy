@@ -9,6 +9,11 @@ module Api
       end
     end
 
+    def find
+      @shelved_book = ShelvedBook.where(shelved_book_params)
+      render json: @shelved_book
+    end
+
     def destroy
       @shelved_book = ShelvedBook.find(params[:id])
       @shelved_book.try(:destroy)

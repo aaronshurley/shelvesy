@@ -13,6 +13,7 @@ Shelvesy.Views.BookAddToShelf = Backbone.View.extend({
   },
   
   render: function() {
+    console.log("BookAddToShelf#render");
     var shelf = this.model.on_shelf();
     var on_shelf = false;
     if (shelf.attributes.name) {
@@ -40,21 +41,23 @@ Shelvesy.Views.BookAddToShelf = Backbone.View.extend({
   },
   
   addToShelf: function(event) {
+    console.log("BookAddToShelf#addToShelf");
     event.preventDefault();
     var $target = $(event.currentTarget);
     var shelfId = $target.data("shelf-id");
-    
     console.log(shelfId);
+    this.model.addToShelf(shelfId, this.render);
   },
   
   removeFromShelf: function(event) {
+    console.log("BookAddToShelf#removeFromShelf");
     event.preventDefault();
     var $target = $(event.currentTarget);
     var shelfId = $target.data("shelf-id");
     console.log(shelfId);
-    var shelf = this.collection.getOrFetch(shelfId);
-    var books = shelf.books();
-    books.remove(this.model);
-    debugger
+    this.model.findThenDelete(shelfId, this.render);
+    // var shelf = this.collection.getOrFetch(shelfId);
+//     var books = shelf.books();
+//     books.remove(this.model);
   }
 });

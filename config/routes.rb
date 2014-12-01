@@ -9,7 +9,9 @@ Shelvesy::Application.routes.draw do
       get 'shelved', on: :collection
     end
     resources :shelves
-    resources :shelved_books
+    resources :shelved_books do
+      get 'find', on: :collection
+    end
     resources :reviews
     resources :comments
   end
