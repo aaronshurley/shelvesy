@@ -1,3 +1,3 @@
-json.extract! @review :id, :title, :body, :rating, :book_id, :user_id, :created_at, :udpated_at
+json.extract! @review, :id, :title, :body, :rating, :book_id, :user_id, :created_at, :updated_at
 json.user @review.user, :id, :email, :created_at, :updated_at
-json.book @review.book, :id, :title, :author, :isbn, :description, :img_url, :created_at, :udpated_at
+json.book @review.book, :id, :title, :author, :isbn, :description, :img_url_small, :img_url_med, :img_url_thumb, :created_at, :updated_at
