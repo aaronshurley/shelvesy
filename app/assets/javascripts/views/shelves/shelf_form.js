@@ -25,7 +25,6 @@ Shelvesy.Views.ShelfForm = Backbone.LinkFormView.extend({
 
     this.$el.html(content);
     this.delegateEvents();
-    this.collection.trigger('resize');
     return this;
   }
 });

@@ -4,14 +4,14 @@
 <% } else { %>
   <!-- Split button -->
   <div class="btn-group add-to">
-    <button type="button" class="btn btn-success">Want to Read!</button>
+    <button type="button" class="btn btn-success now" data-shelf-id="<%= to_read.id %>">Want to Read!</button>
     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
       <span class="caret"></span>
       <span class="sr-only">Toggle Dropdown</span>
     </button>
      <ul class="dropdown-menu" role="menu">
       <% shelves.each(function(shelf) { %>
-      <li>
+      <li class="shelf-select">
         <a href="#" data-shelf-id="<%= shelf.id %>">
           <%= shelf.escape('name') %>
         </a>

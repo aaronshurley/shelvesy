@@ -64,6 +64,8 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
   
   bookShow: function(id) {
     console.log("Router#bookShow");
+    
+    // should i fetch global collections everywhere?
     // Shelvesy.Collections.shelves.fetch();
     // Shelvesy.Collections.books.fetch();
     

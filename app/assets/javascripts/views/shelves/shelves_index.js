@@ -39,5 +39,8 @@ Shelvesy.Views.ShelvesIndex = Backbone.CompositeView.extend({
         shelfToRemove = shelves.getOrFetch(shelfId),
         shelfSubviews = this.subviews('.shelves-list');
     shelfToRemove.destroy();
+    shelves.remove(shelfToRemove);
+    var subviewToRemove = _.findWhere(shelfSubviews, {model: shelfToRemove});
+    shelfSubviews.splice(shelfSubviews.indexOf(shelfToRemove), 1);
   }
 });
