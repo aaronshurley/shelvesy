@@ -18,6 +18,7 @@ Shelvesy.Views.BookAddToShelf = Backbone.View.extend({
     if (shelf.attributes.name) {
       on_shelf = true;
     }
+    // var to_read = this.collection.findWhere({name: 'To Read'});
     var to_read = '';
     this.collection.each(function(shelf) {
       if (shelf.attributes.name === 'To Read') {
@@ -42,6 +43,7 @@ Shelvesy.Views.BookAddToShelf = Backbone.View.extend({
     event.preventDefault();
     var $target = $(event.currentTarget);
     var shelfId = $target.data("shelf-id");
+    
     console.log(shelfId);
   },
   
