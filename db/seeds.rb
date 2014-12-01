@@ -41,9 +41,19 @@ end
 # put half of the books on test's shelves
 user = User.find_by_email("test@gmail.com")
 Book.all.slice(0, Book.all.count / 2).each do |book|
+  shelf = user.shelves.sample
   ShelvedBook.create(
     book_id: book.id,
-    shelf_id: user.shelves.sample.id,
+    shelf_id: shelf.id,
     date_added: DateTime.now
   )
+  if shelf.name == "Read"
+    Review.create(
+      title: Faker::Lorem.sentence,
+      body: Faker::Lorem.sentence(4),
+      rating: Random.rand(6),
+      book_id: book.id,
+      user_id: user.id
+    )
+  end
 end

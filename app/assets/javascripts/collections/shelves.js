@@ -3,7 +3,7 @@ Shelvesy.Collections.Shelves = Backbone.Collection.extend({
   url: 'api/shelves',
   
   initialize: function(models, options){
-    if (options) {
+    if (options && options.user_id) {
       this.user_id = options.user_id;
     }
   },

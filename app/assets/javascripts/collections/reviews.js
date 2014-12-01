@@ -3,7 +3,7 @@ Shelvesy.Collections.Reviews = Backbone.Collection.extend({
   urlRoot: 'api/reviews',
   
   initialize: function(models, options) {
-    if (options) {
+    if (options && options.book) {
       this.book = options.book;
     }
   },

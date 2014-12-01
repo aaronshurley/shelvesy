@@ -3,7 +3,7 @@ Shelvesy.Collections.Books = Backbone.Collection.extend({
   url: 'api/books',
   
   initialize: function(models, options) {
-    if (options) {
+    if (options && options.shelf) {
       this.shelf = options.shelf;
     }
   },

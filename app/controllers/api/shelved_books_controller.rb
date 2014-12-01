@@ -3,7 +3,8 @@ module Api
     def create
       @shelved_book = ShelvedBook.new(shelved_book_params)
       if @shelved_book.save
-        render json: @shelved_book
+        @book = @shelved_book.book
+        render 'api/books/show'
       else
         render json: @shelved_book.errors.full_messages, status: :unprocessable_entity
       end
