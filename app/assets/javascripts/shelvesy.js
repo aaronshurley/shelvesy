@@ -11,7 +11,7 @@ window.Shelvesy = {
   }
 };
 
-// might not need the below?
 $(document).ready(function(){
   Shelvesy.initialize();
+
 });

@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Populate with 20 Users
-User.create(email: "userName@gmail.com", password: "password")
+User.create(email: "username@gmail.com", password: "password")
 User.create(email: "test@gmail.com", password: "password")
 18.times do
   User.create(email: Faker::Internet.email, password: Faker::Internet.password)
@@ -52,10 +52,29 @@ Book.all.slice(0, Book.all.count / 2).each do |book|
   if shelf.name == "Read"
     Review.create(
       title: Faker::Lorem.sentence,
-      body: Faker::Lorem.sentence(4),
+      body: Faker::Lorem.sentences.join(" "),
       rating: Random.rand(6),
       book_id: book.id,
       user_id: user.id
+    )
+  end
+end
+
+user2 = User.find_by_email("username@gmail.com")
+Book.all.slice(0, Book.all.count / 2).each do |book|
+  shelf = user2.shelves.sample
+  ShelvedBook.create(
+    book_id: book.id,
+    shelf_id: shelf.id,
+    date_added: DateTime.now
+  )
+  if shelf.name == "Read"
+    Review.create(
+      title: Faker::Lorem.sentence,
+      body: Faker::Lorem.sentences(6).join(" "),
+      rating: Random.rand(6),
+      book_id: book.id,
+      user_id: user2.id
     )
   end
 end

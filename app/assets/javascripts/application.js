@@ -16,6 +16,7 @@
 //= require backbone
 //= require bootstrap
 //= require shelvesy
+//= require_tree ../../../vendor/assets/javascripts/.
 //= require_tree ../templates
 //= require_tree ./utils
 //= require_tree ./models
