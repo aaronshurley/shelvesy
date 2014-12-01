@@ -28,5 +28,20 @@ Shelvesy.Models.Book = Backbone.Model.extend({
     }
     
     return response;
+  },
+  
+  addToShelf: function(shelfId, successCallback) {
+    $.ajax({
+      type: 'POST',
+      url: '/api/shelved_books',
+      data: { shelved_book: {
+        shelf_id: shelfId,
+        book_id: this.id,
+        date_added: new Date()
+      }},
+      success: function () {
+        console.log("YAY");
+      }
+    });
   }
 });

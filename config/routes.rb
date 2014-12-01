@@ -12,6 +12,5 @@ Shelvesy::Application.routes.draw do
     resources :shelved_books
     resources :reviews
     resources :comments
-
   end
 end
