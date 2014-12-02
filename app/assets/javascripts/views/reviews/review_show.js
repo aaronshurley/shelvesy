@@ -19,8 +19,8 @@ Shelvesy.Views.ReviewShow = Backbone.View.extend({
   
   updateStarRating: function () {
     // BELOW DOESN'T WORK
-    $('#input-id-' + this.model.id).rating({size: 'xs', showClear: false, showCaption: false, readOnly: true, disabled: true});
-    $('#input-id-' + this.model.id).rating('update', this.model.escape('rating'));
+    this.$('#input-id-' + this.model.id).rating({size: 'xs', showClear: false, showCaption: false, readOnly: true, disabled: true});
+    this.$('#input-id-' + this.model.id).rating('update', this.model.escape('rating'));
     // $('div#input-id-2').text("BLAH");
   }
 });

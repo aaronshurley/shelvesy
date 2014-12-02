@@ -1,5 +1,5 @@
 Shelvesy.Models.Review = Backbone.Model.extend({
-  url: 'api/reviews',
+  urlRoot: 'api/reviews',
   
   user: function() {
     if (!this._user) {
