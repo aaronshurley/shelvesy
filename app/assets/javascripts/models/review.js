@@ -16,9 +16,13 @@ Shelvesy.Models.Review = Backbone.Model.extend({
     
     return this._book;
   },
+  
+  review_date: function() {
+    var date = new Date(this.attributes.updated_at);
+    return date.toLocaleDateString();
+  },
 
   parse: function (response) {
-    
     if (response.user) {
       console.log("PARSED USER");
       this._user = response.user;

@@ -14,13 +14,20 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
     this.renderBtn();
     this.renderStarRating();
     this.renderReviews();
+    if (this.userReview()) {
+      var userReviewShow = new Shelvesy.Views.UserReviewShow({
+        model: this.userReview()
+      });
+      this.addSubview('.user-review', userReviewShow);
+    }
     return this;
   },
   
   userReview: function () {
     var reviews = this.model.reviews();
     this._user_review = this.model._current_user && 
-      reviews.findWhere({id: this.model._current_user.id});
+      reviews.findWhere({user_id: this.model._current_user.id});
+    
     return this._user_review;
   },
   

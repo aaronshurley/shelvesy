@@ -10,6 +10,7 @@ Shelvesy.Views.ReviewListShow = Backbone.CompositeView.extend({
   
   addReview: function (review) {
     console.log("ReviewListShow#addReview");
+    
     var itemView = new Shelvesy.Views.ReviewShow({
       model: review
     });
