@@ -7,7 +7,6 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
     '': 'index',
     'books/': 'booksIndex',
     'books/:id': 'bookShow',
-    
     'books/shelved/': 'shelvedBookIndex',
     'shelves/': 'shelvesIndex',
     'shelves/:id': 'shelfShow'

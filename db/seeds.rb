@@ -51,8 +51,7 @@ Book.all.slice(0, Book.all.count / 2).each do |book|
   )
   if shelf.name == "Read"
     Review.create(
-      title: Faker::Lorem.sentence,
-      body: Faker::Lorem.sentences.join(" "),
+      body: Faker::Lorem.sentences(12).join(" "),
       rating: Random.rand(6),
       book_id: book.id,
       user_id: user.id
@@ -70,11 +69,33 @@ Book.all.slice(0, Book.all.count / 2).each do |book|
   )
   if shelf.name == "Read"
     Review.create(
-      title: Faker::Lorem.sentence,
-      body: Faker::Lorem.sentences(6).join(" "),
+      body: Faker::Lorem.sentences(12).join(" "),
       rating: Random.rand(6),
       book_id: book.id,
       user_id: user2.id
     )
+  end
+end
+
+# select 5 users to review half of the books
+count = 0
+while count < 5 do
+  user = User.all.sample
+  unless user.email == "test@gmail.com"
+    shelf = user.shelves.find_by_name("Read")
+    Book.all.slice(0, Book.all.count / 2).each do |book|
+      ShelvedBook.create(
+        book_id: book.id,
+        shelf_id: shelf.id,
+        date_added: DateTime.now
+      )
+      Review.create(
+        body: Faker::Lorem.sentences(12).join(" "),
+        rating: Random.rand(6),
+        book_id: book.id,
+        user_id: user.id
+      )
+    end
+    count += 1
   end
 end

@@ -14,6 +14,11 @@ module Api
       render :show
     end
 
+    def index
+      @reviews = Review.all
+      render json: @reviews
+    end
+
     def destroy
       @review = Review.find(params[:id])
       @review.destroy
@@ -22,7 +27,7 @@ module Api
 
     private
     def review_params
-      params.require(:review).permit(:title, :body, :rating, :book_id, :user_id)
+      params.require(:review).permit(:body, :rating, :book_id, :user_id)
     end
   end
 end

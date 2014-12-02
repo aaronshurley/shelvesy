@@ -16,7 +16,6 @@ module Api
 
     def show
       @book = Book.find(params[:id])
-      @user = current_user
       render :show
     end
 
