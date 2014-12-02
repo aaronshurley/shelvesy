@@ -17,11 +17,22 @@ Shelvesy.Models.Book = Backbone.Model.extend({
     return this._on_shelf;
   },
   
-  parse: function (response) {
+  current_user: function() {
+    if (!this._current_user) {
+      this._current_user = undefined;
+    }
     
+    return this._current_user;
+  },
+  
+  parse: function (response) {
     if (response.reviews) {
       this.reviews().set(response.reviews, { parse: true });
       delete response.reviews;
+    }
+    if (response.current_user) {
+      this._current_user = response.current_user;
+      delete response.current_user;
     }
     if (response.on_shelf) {
       this.on_shelf().set(response.on_shelf);

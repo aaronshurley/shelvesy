@@ -14,7 +14,7 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
     console.log("BookStarRating#render");
     var content = this.template();
     this.$el.html(content);
-    
+    $('.book-star-rating').rating({size: 'sm', step: 1, showCaption: false});
     return this;
   }
 });

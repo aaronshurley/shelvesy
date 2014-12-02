@@ -9,6 +9,7 @@ if current_user.books.include?(@book)
     end
   end
 end
+json.current_user current_user, :id, :email
 json.shelves current_user.shelves do |shelf|
   json.extract! shelf, :id, :name, :user_id
 end

@@ -21,7 +21,7 @@ Shelvesy.Models.Review = Backbone.Model.extend({
     
     if (response.user) {
       console.log("PARSED USER");
-      this.user().set(response.user);
+      this._user = response.user;
       delete response.user;
     }
     if (response.book) {
