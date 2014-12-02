@@ -1,5 +1,5 @@
-<h6>User: <%= review.user.email %></h6>
+<span class="date">Reviewed on <%= review.review_date() %></span>
 <div id="input-id-<%= review.id %>">
 </div>
-<h6>Rating: <%= review.escape('rating') %></h6>
+<span class="by_user">by user: <%= review.user.email %></span>
 <p><%= review.escape('body') %></p>
