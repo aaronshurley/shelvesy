@@ -13,8 +13,33 @@ Shelvesy.Views.BookGridItemShow = Backbone.CompositeView.extend({
       book: this.model
     });
     this.$el.html(content);
-    // this.renderBtn();
+    this.renderBtn();
     // this.renderStarRating();
     return this;
-  }
+  },
+  
+  renderBtn: function() {
+    console.log("BookGridItemShow#renderBtn");
+    Shelvesy.Collections.shelves.fetch();
+    
+    var btnView = new Shelvesy.Views.BookAddToShelf({
+      model: this.model,
+      collection: Shelvesy.Collections.shelves
+    });
+    this.emptySubviews('.book-add-to-shelf-btn');
+    this.addSubview('.book-add-to-shelf-btn', btnView);
+  }// ,
+//
+//   renderStarRating: function() {
+//     console.log("BookGridItemShow#renderStarRating");
+//
+//     var starView = new Shelvesy.Views.BookStarRating({
+//         model: this.model.userReview()
+//     });
+//
+//     var book_id = this.model.id;
+//     this.emptySubviews('.book-star-rating');
+//     this.addSubview('.book-star-rating', starView);
+//     this.$('.book-star-rating').attr("data-book-id", book_id);
+//   }
 });

@@ -122,3 +122,24 @@ div.review-list-item {
 .review-list-itemm span.by_user {
   display: inline;
 }
+
+.shelf-item {
+  clear: both;
+}
+
+.book-grid-item {
+  display: inline;
+  padding-left: 5px;
+  padding-right: 5px;
+  float: left;
+  text-align: center;
+}
+
+.book-grid-item img {
+  height: 197px;
+  width: 128px;
+}
+
+.book-grid-item a img:hover {
+  border: 2px solid $barBorderColor;
+}

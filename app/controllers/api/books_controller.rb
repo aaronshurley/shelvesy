@@ -11,7 +11,7 @@ module Api
 
     def index
       @books = Book.all
-      render json: @books
+      render :index
     end
 
     def show
@@ -21,7 +21,7 @@ module Api
 
     def shelved
       @books = current_user.books
-      render json: @books
+      render :index
     end
 
     private

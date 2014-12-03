@@ -1,5 +1,5 @@
 json.extract! shelf, :id, :name, :user_id, :created_at, :updated_at
 json.user shelf.user, :id, :email, :created_at, :updated_at
 json.books shelf.books do |book|
-  json.extract! book, :id, :title, :author, :isbn, :description, :img_url_small, :img_url_med, :img_url_thumb, :created_at, :updated_at
+  json.partial! 'api/books/book', book: book
 end
