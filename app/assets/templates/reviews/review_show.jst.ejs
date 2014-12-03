@@ -1,0 +1,6 @@
+<% if (review && review.attributes.body) { %>
+  <p><%= review.escape('body') %></p>
+  <span class="date">Reviewed on <%= review.review_date() %></span> | <a href="javascript:void(0);">Edit Review</a>
+<% } else { %>
+  <button class="btn btn-success add">Add Review</button>
+<% } %>

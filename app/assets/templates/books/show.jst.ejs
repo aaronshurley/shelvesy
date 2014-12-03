@@ -14,10 +14,12 @@
     <%= book.get('description') %>
   </div>
 </div>
-<% if (review && review.attributes.body) { %>
+
 <div class="user-review">
-<h3>My Review</h3>
-</div>
+<% if (review && review.attributes.body) { %>
+  <h3>My Review</h3>
 <% } %>
+</div>
+
 <div class="book-reviews">
 </div>

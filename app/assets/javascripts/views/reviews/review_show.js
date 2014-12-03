@@ -4,7 +4,8 @@ Shelvesy.Views.ReviewShow = Backbone.View.extend({
   
   initialize: function () {
     console.log("ReviewShow#initialize");
-    this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.model, 'sync change', this.render);
+    this.listenTo(this.model, 'destroy', this.removeView);
   },
 
   render: function () {
@@ -20,5 +21,9 @@ Shelvesy.Views.ReviewShow = Backbone.View.extend({
   renderStarRating: function () {
     this.$('#input-id-' + this.model.id).rating({size: 'xs', showClear: false, showCaption: false, readOnly: true, disabled: true});
     this.$('#input-id-' + this.model.id).rating('update', this.model.escape('rating'));
+  },
+  
+  removeView: function () {
+    this.remove();
   }
 });

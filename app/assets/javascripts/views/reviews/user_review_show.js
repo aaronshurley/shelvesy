@@ -1,24 +1,63 @@
-Shelvesy.Views.UserReviewShow = Backbone.View.extend({
-  template: JST['reviews/user_show'],
+Shelvesy.Views.UserReviewShow = Backbone.LinkFormView.extend({
+  showTemplate: JST['reviews/review_show'],
+  formTemplate: JST['reviews/review_form'],
   className: 'user-review-show',
+  
+  events: {
+    'click button.remove':'removeReview',
+    'click button.submit':'create',
+    'click a': 'showForm',
+    'click button.add': 'showForm',
+    'click .close': 'hideForm',
+    'keydown textarea': 'maybeCreate'
+  },
   
   initialize: function () {
     console.log("UserReviewShow#initialize");
-    this.listenTo(this.model, 'sync', this.render);
+    
+    this.listenTo(this.model, 'sync change:body destroy', this.render);
   },
 
   render: function () {
     console.log("UserReviewShow#render");
-    var content = this.template({
-      review: this.model
-    });
+    var content;
+    if (this.formShowing) {
+      content = this.formTemplate({
+        review: this.model
+      });
+    } else {
+      content = this.showTemplate({
+        review: this.model
+      });
+    }
     this.$el.html(content);
-    // this.updateStarRating();
+    this.delegateEvents();
     return this;
-  }
+  },
   
-  // updateStarRating: function () {
-//     this.$('#input-id-' + this.model.id).rating({size: 'xs', showClear: false, showCaption: false, readOnly: true, disabled: true});
-//     this.$('#input-id-' + this.model.id).rating('update', this.model.escape('rating'));
-//   }
+  create: function (event) {
+    console.log("UserReviewShow#create");
+    event.preventDefault();
+    var that = this;
+    
+    this.model.set({
+      body: this.$('textarea').val()
+    }).save({
+      success: that.hideForm()
+    });
+  },
+    // new Shelvesy.Models.Review({
+//
+//     }).create({}, { wait: true });
+//
+//     this.$('textarea').val('');
+//     this.$('textarea').focus();
+  // },
+  
+  removeReview: function (event) {
+    console.log("UserReviewShow#remove");
+    event.preventDefault();
+    this.model.destroy();
+    this.remove();
+  }
 });

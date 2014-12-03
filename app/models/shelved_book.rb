@@ -27,6 +27,6 @@ class ShelvedBook < ActiveRecord::Base
   end
 
   def ensure_date_added
-    self.date_added ||= DateTime.now
+    self.date_added = self.updated_at
   end
 end

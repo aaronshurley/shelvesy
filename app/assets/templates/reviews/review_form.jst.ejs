@@ -1,0 +1,10 @@
+<form class="form">
+  <div class="form-group">
+    <textarea class="form-control"><%= review && review.escape('body') %></textarea>
+  </div>
+  <button class="btn btn-success submit">Submit</button>
+  <% if (review) { %>
+    <button class="btn btn-danger remove">Remove</button>
+  <% } %>
+  <a href="#" class="close close-lg">&times;</a>
+</form>

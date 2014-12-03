@@ -13,9 +13,9 @@
 #
 
 class Review < ActiveRecord::Base
-  validates :rating, :book_id, :user_id, presence: true
+  validates :book_id, :user_id, presence: true
   validates_uniqueness_of :book_id, scope: :user_id
-  validates_numericality_of :rating, in: 1..5
+
 
   belongs_to :user
   belongs_to :book

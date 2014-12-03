@@ -30,7 +30,6 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
       $('.book-star-rating').rating('update', this.model.escape('rating'));
     }
     
-    // this.$('.book-star-rating').attr("data-book-id", this.book_id)
     return this;
   },
   
@@ -42,28 +41,26 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
       if (this.model) {
         this.model.set({rating: value});
         this.model.save();
-      } // else {
-//         var review = new Shelvesy.Models.Review({
-//           user_id: ,
-//           book_id: ,
-//           rating: value
-//         });
-//         review.save();
-//       }
+      } else {
+        var review = new Shelvesy.Models.Review({
+          book_id: $target.data('book-id'),
+          rating: value
+        });
+        review.save();
+      }
     }
     else {
       console.log("handleRatingChange: clear");
       if (this.model) {
         this.model.set({rating: 0});
         this.model.save();
-      } // else {
-//         var review = new Shelvesy.Models.Review({
-//           user_id: ,
-//           book_id: ,
-//           rating: 0
-//         });
-//         review.save();
-//       }
+      } else {
+        var review = new Shelvesy.Models.Review({
+          book_id: $target.data('book-id'),
+          rating: 0
+        });
+        review.save();
+      }
     }
   },
   

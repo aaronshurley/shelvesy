@@ -1,4 +1,4 @@
-Shelvesy.Views.ShelfForm = Backbone.LinkFormView.extend({
+Shelvesy.Views.ShelfForm = Backbone.View.extend({
   formTemplate: JST['shelves/form'],
   linkTemplate: JST['shelves/form_link'],
 

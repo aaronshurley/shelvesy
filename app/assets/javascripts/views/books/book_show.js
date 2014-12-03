@@ -14,12 +14,20 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
     this.renderBtn();
     this.renderStarRating();
     this.renderReviews();
-    if (this.userReview() && this.userReview().attributes.body) {
-      var userReviewShow = new Shelvesy.Views.UserReviewShow({
-        model: this.userReview()
+    var review;
+    if (this.userReview()) {
+      review = this.userReview();
+    } else {
+      review = new Shelvesy.Models.Review({
+        book_id: this.model.id
       });
-      this.addSubview('.user-review', userReviewShow);
     }
+    
+    var userReviewShow = new Shelvesy.Views.UserReviewShow({
+      model: review
+    });
+    this.addSubview('.user-review', userReviewShow);
+    
     return this;
   },
   
@@ -35,22 +43,22 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
     console.log("BookShow#renderStarRating");
     // $('.book-star-rating').rating({size: 'sm', step: 1, showCaption: false});
     var starView = undefined;
-    
+    var book_id = this.model.id
     if (this.userReview()) {
       starView = new Shelvesy.Views.BookStarRating({
         model: this.userReview(),
-        book_id: this.model.id
+        book_id: book_id
       });
     } else {
       starView = new Shelvesy.Views.BookStarRating({
         model: undefined,
-        book_id: this.model.id
+        book_id: book_id
       });
     }
     
     this.emptySubviews('.book-star-rating');
     this.addSubview('.book-star-rating', starView);
-    
+    this.$('.book-star-rating').attr("data-book-id", book_id);
   },
   
   renderBtn: function() {
