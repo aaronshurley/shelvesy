@@ -16,6 +16,12 @@ body {
   border-bottom: 1px solid $barBorderColor;
 }
 
+// come back to this
+.navbar-brand img {
+  height: 20px;
+  width: 20px;
+}
+
 .book-list-item {
   border-top: 1px solid $barBorderColor;
   overflow: auto;

@@ -1,6 +1,8 @@
 json.extract! @book, :id, :title, :author, :isbn, :description, :img_url_small, :img_url_med, :img_url_thumb, :created_at, :updated_at
 json.reviews @book.reviews do |review|
   json.extract! review, :id, :body, :rating, :book_id, :user_id, :created_at, :updated_at
+  json.user review.user, :id, :email
+  json.book review.book, :id, :title, :author, :isbn, :description, :img_url_small, :img_url_med, :img_url_thumb
 end
 if current_user.books.include?(@book)
   current_user.shelves.each do |shelf|

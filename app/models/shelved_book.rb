@@ -13,8 +13,15 @@
 
 class ShelvedBook < ActiveRecord::Base
   validates :book_id, :shelf_id, :date_added, presence: true
-  validates_uniqueness_of :book_id, scope: :shelf_id
+  validate :user_only_has_one_copy_of_book, on: :create
 
   belongs_to :shelf
+  has_one :user, through: :shelf
   belongs_to :book
+
+  def user_only_has_one_copy_of_book
+    if user.books.where(id: self.book_id).exists?
+      errors.add(:book_id, "already shelved")
+    end
+  end
 end

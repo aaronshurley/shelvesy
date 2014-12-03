@@ -1,5 +1,5 @@
 <span class="date">Reviewed on <%= review.review_date() %></span>
 <div id="input-id-<%= review.id %>">
 </div>
-<span class="by_user">by user: <%= review.user().email %></span>
+<span class="by_user"> by <%= review.user().email %></span>
 <p><%= review.escape('body') %></p>

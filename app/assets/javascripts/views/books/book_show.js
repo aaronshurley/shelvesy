@@ -35,13 +35,16 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
     console.log("BookShow#renderStarRating");
     // $('.book-star-rating').rating({size: 'sm', step: 1, showCaption: false});
     var starView = undefined;
+    
     if (this.userReview()) {
       starView = new Shelvesy.Views.BookStarRating({
-        model: this.userReview()
+        model: this.userReview(),
+        book_id: this.model.id
       });
     } else {
       starView = new Shelvesy.Views.BookStarRating({
-        model: undefined
+        model: undefined,
+        book_id: this.model.id
       });
     }
     

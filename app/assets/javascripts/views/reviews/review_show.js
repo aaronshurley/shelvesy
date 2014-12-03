@@ -13,11 +13,11 @@ Shelvesy.Views.ReviewShow = Backbone.View.extend({
       review: this.model
     });
     this.$el.html(content);
-    this.updateStarRating();
+    this.renderStarRating();
     return this;
   },
   
-  updateStarRating: function () {
+  renderStarRating: function () {
     this.$('#input-id-' + this.model.id).rating({size: 'xs', showClear: false, showCaption: false, readOnly: true, disabled: true});
     this.$('#input-id-' + this.model.id).rating('update', this.model.escape('rating'));
   }

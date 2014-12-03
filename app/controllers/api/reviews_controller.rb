@@ -1,7 +1,7 @@
 module Api
   class ReviewsController < ApplicationController
     def create
-      @review = Review.new(review_params)
+      @review = current_user.reviews.new(review_params)
       if @review.save
         render json: @review
       else
@@ -17,6 +17,15 @@ module Api
     def index
       @reviews = Review.all
       render :index
+    end
+
+    def update
+      @review = Review.find(params[:id])
+      if @review.update_attributes(review_params)
+        render json: @review
+      else
+        render json: @review.errors.full_messages, status: :unprocessable_entity
+      end
     end
 
     def destroy
