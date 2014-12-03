@@ -3,18 +3,20 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
   
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(this.collection, 'sync remove', this.renderStarRating);
+    this.listenTo(this.model.userReview(), 'sync remove', this.renderStarRating);
+    this.listenTo(this.model.userReview(), 'sync remove', this.renderUserRating);
+    this.listenTo(this.collection, 'sync remove change:rating', this.renderStarRating);
     this.listenTo(this.collection, 'sync remove change:rating', this.renderUserReview);
+
   },
   
   render: function() {
+    console.log("BookShow#render");
     var content = this.template({
       book: this.model,
-      review: this.userReview()
+      review: this.model.userReview()
     });
     this.$el.html(content);
-    
-    // TODO: refactor code to initialize
     this.renderBtn();
     this.renderStarRating();
     this.renderReviews();
@@ -23,28 +25,12 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
     return this;
   },
   
-  // refactored to Book, TODO: cleanup everywhere!
-  // userReview: function () {
-  //   var reviews = this.model.reviews();
-  //   this._user_review = this.model._current_user &&
-  //     reviews.findWhere({user_id: this.model._current_user.id});
-  //
-  //   return this._user_review;
-  // },
-  
   renderStarRating: function() {
     console.log("BookShow#renderStarRating");
-    // $('.book-star-rating').rating({size: 'sm', step: 1, showCaption: false});
-    var starView = undefined;
-    if (this.userReview()) {
-      starView = new Shelvesy.Views.BookStarRating({
-        model: this.userReview()
-      });
-    } else {
-      starView = new Shelvesy.Views.BookStarRating({
-        model: new Shelvesy.Models.Review()
-      });
-    }
+    
+    var starView = new Shelvesy.Views.BookStarRating({
+        model: this.model.userReview()
+    });
 
     var book_id = this.model.id;
     this.emptySubviews('.book-star-rating');
@@ -63,18 +49,9 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
     this.addSubview('.book-add-to-shelf-btn', btnView);
   },
   
-  
-  // TODO: refactor below!!!!!
   renderUserReview: function() {
     console.log("BookShow#renderUserReview");
-    var review;
-    if (this.userReview()) {
-      review = this.userReview();
-    } else {
-      review = new Shelvesy.Models.Review({
-        book_id: this.model.id
-      });
-    }
+    var review = this.model.userReview();
     
     var userReviewShow = new Shelvesy.Views.UserReviewShow({
       model: review,

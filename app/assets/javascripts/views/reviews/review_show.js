@@ -22,7 +22,7 @@ Shelvesy.Views.ReviewShow = Backbone.View.extend({
     this.$('#input-id-' + this.model.id).rating({size: 'xs', showClear: false, showCaption: false, readOnly: true, disabled: true});
     this.$('#input-id-' + this.model.id).rating('update', this.model.escape('rating'));
   },
-  
+
   removeView: function () {
     this.remove();
   }
