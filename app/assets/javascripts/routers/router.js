@@ -15,7 +15,12 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
   index: function(){
     console.log("Router#index");
     this.updateNavbar("Home");
-    this.$rootEl.empty();
+    Shelvesy.Collections.shelves.fetch();
+
+    var mainView = new Shelvesy.Views.MainViewShow({
+      collection: Shelvesy.Collections.shelves
+    });
+    this._swapView(mainView);
   },
   
   booksIndex: function() {
@@ -63,10 +68,6 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
   
   bookShow: function(id) {
     console.log("Router#bookShow");
-    
-    // should i fetch global collections everywhere?
-    // Shelvesy.Collections.shelves.fetch();
-    // Shelvesy.Collections.books.fetch();
     
     var book = new Shelvesy.Models.Book({id: id});
     book.fetch();
