@@ -42,22 +42,19 @@ Shelvesy.Views.UserReviewShow = Backbone.LinkFormView.extend({
     
     this.model.set({
       body: this.$('textarea').val()
-    }).save({
+    });
+    this.collection.create(this.model, {
       success: that.hideForm()
     });
   },
-    // new Shelvesy.Models.Review({
-//
-//     }).create({}, { wait: true });
-//
-//     this.$('textarea').val('');
-//     this.$('textarea').focus();
-  // },
   
   removeReview: function (event) {
+    var that = this;
     console.log("UserReviewShow#remove");
     event.preventDefault();
+    this.collection.remove(this.model);
     this.model.destroy();
-    this.remove();
+    this.hideForm();
+    
   }
 });

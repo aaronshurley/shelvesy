@@ -3,6 +3,8 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
   
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.collection, 'sync remove', this.renderStarRating);
+    this.listenTo(this.collection, 'sync remove change:rating', this.renderUserReview);
   },
   
   render: function() {
@@ -14,19 +16,7 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
     this.renderBtn();
     this.renderStarRating();
     this.renderReviews();
-    var review;
-    if (this.userReview()) {
-      review = this.userReview();
-    } else {
-      review = new Shelvesy.Models.Review({
-        book_id: this.model.id
-      });
-    }
-    
-    var userReviewShow = new Shelvesy.Views.UserReviewShow({
-      model: review
-    });
-    this.addSubview('.user-review', userReviewShow);
+    this.renderUserReview();
     
     return this;
   },
@@ -43,19 +33,17 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
     console.log("BookShow#renderStarRating");
     // $('.book-star-rating').rating({size: 'sm', step: 1, showCaption: false});
     var starView = undefined;
-    var book_id = this.model.id
     if (this.userReview()) {
       starView = new Shelvesy.Views.BookStarRating({
-        model: this.userReview(),
-        book_id: book_id
+        model: this.userReview()
       });
     } else {
       starView = new Shelvesy.Views.BookStarRating({
-        model: undefined,
-        book_id: book_id
+        model: new Shelvesy.Models.Review()
       });
     }
-    
+
+    var book_id = this.model.id;
     this.emptySubviews('.book-star-rating');
     this.addSubview('.book-star-rating', starView);
     this.$('.book-star-rating').attr("data-book-id", book_id);
@@ -70,6 +58,25 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
     });
     this.emptySubviews('.book-add-to-shelf-btn');
     this.addSubview('.book-add-to-shelf-btn', btnView);
+  },
+  
+  renderUserReview: function() {
+    console.log("BookShow#renderUserReview");
+    var review;
+    if (this.userReview()) {
+      review = this.userReview();
+    } else {
+      review = new Shelvesy.Models.Review({
+        book_id: this.model.id
+      });
+    }
+    
+    var userReviewShow = new Shelvesy.Views.UserReviewShow({
+      model: review,
+      collection: this.collection
+    });
+    this.emptySubviews('.user-review');
+    this.addSubview('.user-review', userReviewShow);
   },
   
   renderReviews: function () {
