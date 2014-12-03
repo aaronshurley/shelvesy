@@ -62,6 +62,20 @@ Shelvesy.Models.Book = Backbone.Model.extend({
     });
   },
   
+  userReview: function () {
+    var reviews = this.reviews();
+    this._user_review = this._current_user && 
+      reviews.findWhere({user_id: this._current_user.id});
+    
+    if (!this._user_review) {
+      this._user_review = new Shelvesy.Models.Review({
+        book_id: this.id
+      });
+    }
+    
+    return this._user_review;
+  },
+  
   findThenDelete: function (shelfId, successCallback) {
     var that = this;
     $.ajax({

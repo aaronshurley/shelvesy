@@ -13,6 +13,8 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
       review: this.userReview()
     });
     this.$el.html(content);
+    
+    // TODO: refactor code to initialize
     this.renderBtn();
     this.renderStarRating();
     this.renderReviews();
@@ -21,13 +23,14 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
     return this;
   },
   
-  userReview: function () {
-    var reviews = this.model.reviews();
-    this._user_review = this.model._current_user && 
-      reviews.findWhere({user_id: this.model._current_user.id});
-    
-    return this._user_review;
-  },
+  // refactored to Book, TODO: cleanup everywhere!
+  // userReview: function () {
+  //   var reviews = this.model.reviews();
+  //   this._user_review = this.model._current_user &&
+  //     reviews.findWhere({user_id: this.model._current_user.id});
+  //
+  //   return this._user_review;
+  // },
   
   renderStarRating: function() {
     console.log("BookShow#renderStarRating");
@@ -60,6 +63,8 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
     this.addSubview('.book-add-to-shelf-btn', btnView);
   },
   
+  
+  // TODO: refactor below!!!!!
   renderUserReview: function() {
     console.log("BookShow#renderUserReview");
     var review;

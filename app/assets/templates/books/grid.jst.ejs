@@ -1,0 +1,14 @@
+<div class="shelf-item">
+  <% if (model.escape('name') === 'Currently Reading') { %>
+    <h2>Have you finished any of these? <small><%= model.escape('name') %></small></h2>
+  <% } else if (model.escape('name') === 'To Read') { %>
+    <h2>Have you started any of these? <small><%= model.escape('name') %></small></h2>
+  <% } else if (model.escape('name') === 'Read') { %>
+    <h2>Anything you want to add? <small><%= model.escape('name') %></small></h2>
+  <% } else { %>
+    <h2><%= model.escape('name') %></h2>
+  <% } %>
+
+  <div class="book-grid">
+  </div>
+</div>
