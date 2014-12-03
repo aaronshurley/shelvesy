@@ -14,7 +14,7 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
     this.renderBtn();
     this.renderStarRating();
     this.renderReviews();
-    if (this.userReview()) {
+    if (this.userReview() && this.userReview().attributes.body) {
       var userReviewShow = new Shelvesy.Views.UserReviewShow({
         model: this.userReview()
       });

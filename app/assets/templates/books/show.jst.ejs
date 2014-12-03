@@ -14,7 +14,7 @@
     <%= book.get('description') %>
   </div>
 </div>
-<% if (review) { %>
+<% if (review && review.attributes.body) { %>
 <div class="user-review">
 <h3>My Review</h3>
 </div>
