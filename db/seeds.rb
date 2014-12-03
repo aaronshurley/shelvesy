@@ -46,8 +46,7 @@ Book.all.slice(0, Book.all.count / 2).each do |book|
   shelf = user.shelves.sample
   ShelvedBook.create(
     book_id: book.id,
-    shelf_id: shelf.id,
-    date_added: DateTime.now
+    shelf_id: shelf.id
   )
   if shelf.name == "Read"
     Review.create(
@@ -64,8 +63,7 @@ Book.all.slice(0, Book.all.count / 2).each do |book|
   shelf = user2.shelves.sample
   ShelvedBook.create(
     book_id: book.id,
-    shelf_id: shelf.id,
-    date_added: DateTime.now
+    shelf_id: shelf.id
   )
   if shelf.name == "Read"
     Review.create(
@@ -86,8 +84,7 @@ while count < 5 do
     Book.all.slice(0, Book.all.count / 2).each do |book|
       ShelvedBook.create(
         book_id: book.id,
-        shelf_id: shelf.id,
-        date_added: DateTime.now
+        shelf_id: shelf.id
       )
       Review.create(
         body: Faker::Lorem.sentences(12).join(" "),
