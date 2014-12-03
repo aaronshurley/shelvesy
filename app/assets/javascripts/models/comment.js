@@ -1,3 +1,3 @@
 Shelvesy.Models.Comment = Backbone.Model.extend({
-  url: 'api/comments'
+  urlRoot: 'api/comments'
 });

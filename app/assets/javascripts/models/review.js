@@ -3,7 +3,7 @@ Shelvesy.Models.Review = Backbone.Model.extend({
   
   user: function() {
     if (!this._user) {
-      this._user = undefined;
+      this._user = {id: this.attributes.user_id};
     }
     
     return this._user;

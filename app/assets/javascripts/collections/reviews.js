@@ -1,6 +1,6 @@
 Shelvesy.Collections.Reviews = Backbone.Collection.extend({
   model: Shelvesy.Models.Review,
-  urlRoot: 'api/reviews',
+  url: 'api/reviews',
   
   initialize: function(models, options) {
     if (options && options.book) {

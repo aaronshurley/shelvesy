@@ -52,7 +52,7 @@ Book.all.slice(0, Book.all.count / 2).each do |book|
   if shelf.name == "Read"
     Review.create(
       body: Faker::Lorem.sentences(12).join(" "),
-      rating: Random.rand(6),
+      rating: (Random.rand(5) + 1),
       book_id: book.id,
       user_id: user.id
     )
@@ -70,7 +70,7 @@ Book.all.slice(0, Book.all.count / 2).each do |book|
   if shelf.name == "Read"
     Review.create(
       body: Faker::Lorem.sentences(12).join(" "),
-      rating: Random.rand(6),
+      rating: (Random.rand(5) + 1),
       book_id: book.id,
       user_id: user2.id
     )
@@ -91,7 +91,7 @@ while count < 5 do
       )
       Review.create(
         body: Faker::Lorem.sentences(12).join(" "),
-        rating: Random.rand(6),
+        rating: (Random.rand(5) + 1),
         book_id: book.id,
         user_id: user.id
       )

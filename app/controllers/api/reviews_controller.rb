@@ -10,13 +10,13 @@ module Api
     end
 
     def show
-      @review = Review.includes(:user, :book).find(params[:id])
+      @review = Review.find(params[:id])
       render :show
     end
 
     def index
       @reviews = Review.all
-      render json: @reviews
+      render :index
     end
 
     def destroy
