@@ -23,7 +23,8 @@ ferriss_books.each do |book|
     description: book.description,
     img_url_small: book.image_link,
     img_url_med: book.image_link(:zoom => 2),
-    img_url_thumb: book.image_link(:zoom => 5)
+    img_url_thumb: book.image_link(:zoom => 5),
+    ave_rating: book.average_rating
   )
 end
 
@@ -36,7 +37,8 @@ palahniuk_books.each do |book|
     description: book.description,
     img_url_small: book.image_link,
     img_url_med: book.image_link(:zoom => 2),
-    img_url_thumb: book.image_link(:zoom => 5)
+    img_url_thumb: book.image_link(:zoom => 5),
+    ave_rating: book.average_rating
   )
 end
 

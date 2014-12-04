@@ -21,6 +21,10 @@ Shelvesy.Views.BookGridItemShow = Backbone.CompositeView.extend({
     //this.renderStarRating();
     this.attachSubviews();
     
+    // TODO: finishfor popover average rating
+    // this.$('.ave-rating-' + this.model.id).rating({size: 'xs', showClear: false, showCaption: false, readOnly: true, disabled: true});
+    // this.$('.ave-rating-' + this.model.id).rating('update', this.model.escape('rating'));
+    
     return this;
   },
   

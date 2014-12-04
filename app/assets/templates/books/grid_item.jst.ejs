@@ -1,7 +1,7 @@
 <a href="#/books/<%= book.id %>"
    data-toggle="popover"
    data-html="true"
-   data-content="<%= book.descLink() %>"
+   data-content="<div class='ave-rating-<%= book.id %>'></div><%= book.descLink() %>"
    data-trigger="hover"
    title="<a href='#/books/<%= book.id %>'><%= book.escape('title') %></a> <small>by <%= book.escape('author') %></small>"
 >

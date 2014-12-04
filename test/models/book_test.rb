@@ -11,6 +11,8 @@
 #  description   :text             default("TBD"), not null
 #  img_url_small :string(255)
 #  img_url_med   :string(255)
+#  img_url_thumb :string(255)
+#  ave_rating    :float
 #
 
 require 'test_helper'

@@ -8,7 +8,9 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= render partial: "layouts/notifications" %>
+    <div class="notifications">
+      <%= render partial: "layouts/notifications" %>
+    </div>
     <%= render partial: "layouts/header" %>
     <div class="container">
       <%= yield %>

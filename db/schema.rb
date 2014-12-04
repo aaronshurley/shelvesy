@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203001849) do
+ActiveRecord::Schema.define(version: 20141204060706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20141203001849) do
     t.string   "img_url_small"
     t.string   "img_url_med"
     t.string   "img_url_thumb"
+    t.float    "ave_rating"
   end
 
   add_index "books", ["author"], name: "index_books_on_author", using: :btree

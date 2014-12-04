@@ -149,5 +149,15 @@ div.review-list-item {
 }
 
 .book-grid-item a img:hover {
-  border: 2px solid $barBorderColor;
+  border: 1px solid $barBorderColor;
+}
+
+.notifications {
+  color: darkred;
+  font-weight: bold;
+}
+
+.login-screen input.btn {
+  float: left;
+  margin-right: 8px;
 }

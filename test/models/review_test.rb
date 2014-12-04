@@ -3,9 +3,8 @@
 # Table name: reviews
 #
 #  id         :integer          not null, primary key
-#  title      :string(255)      not null
-#  body       :text             not null
-#  rating     :integer          not null
+#  body       :text
+#  rating     :integer
 #  book_id    :integer          not null
 #  user_id    :integer          not null
 #  created_at :datetime
