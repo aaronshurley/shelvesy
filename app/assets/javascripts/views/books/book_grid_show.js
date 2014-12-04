@@ -54,7 +54,11 @@ Shelvesy.Views.BookGridShow = Backbone.CompositeView.extend({
     var rowView;
     this.collection.each(function( book, i ) {
       if(i === 0 || i % 4 === 0) {
-        rowView = new Shelvesy.Views.BookGridItemShowSlider(); 
+        if (i === 0) {
+          rowView = new Shelvesy.Views.BookGridItemShowSlider({className: 'item active'});
+        } else {
+          rowView = new Shelvesy.Views.BookGridItemShowSlider();
+        }
         this.addSubview('.book-grid', rowView);
       }
       var itemView = new Shelvesy.Views.BookGridItemShow({

@@ -26,10 +26,12 @@ Shelvesy.Views.MainViewShow = Backbone.CompositeView.extend({
     // this.renderShelves();
     this.attachSubviews();
     
+
     $("[data-toggle=popover]").popover({ 
       trigger: "manual", 
-      html: true, 
-      animation:false
+      html: true,
+      container: 'div.well',
+      placement: "right auto"
     }).on("mouseenter", function () {
       var _this = this;
       $(this).popover("show");
@@ -45,10 +47,13 @@ Shelvesy.Views.MainViewShow = Backbone.CompositeView.extend({
       }, 300);
     });
     
-    $('.my-carousel').carousel({
-    	interval: false
-    });
-    $('.my-carousel').on('slid.bs.carousel');
+    setTimeout(function () {
+      $('.my-carousel').carousel({
+      	interval: false
+      });
+      $('.my-carousel').on('slid.bs.carousel');
+    }, 2000);
+    
     
     return this;
   },
