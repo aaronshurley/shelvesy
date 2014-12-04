@@ -1,14 +1,19 @@
 <div class="shelf-item">
   <% if (model.escape('name') === 'Currently Reading') { %>
-    <h2>Have you finished any of these? <small><%= model.escape('name') %></small></h2>
+    <h2>Have you finished any of these? <small><a href="#/shelves/<%= model.id %>"><%= model.escape('name') %></a></small></h2>
   <% } else if (model.escape('name') === 'To Read') { %>
-    <h2>Have you started any of these? <small><%= model.escape('name') %></small></h2>
+    <h2>Have you started any of these? <small><a href="#/shelves/<%= model.id %>"><%= model.escape('name') %></a></small></h2>
   <% } else if (model.escape('name') === 'Read') { %>
-    <h2>Anything you want to add? <small><%= model.escape('name') %></small></h2>
+    <h2>Anything you want to add? <small><a href="#/shelves/<%= model.id %>"><%= model.escape('name') %></a></small></h2>
   <% } else { %>
     <h2><%= model.escape('name') %></h2>
   <% } %>
 
-  <div class="book-grid">
-  </div>
+  <!-- <div class="well">
+    <div class="my-carousel carousel slide"> -->
+      <div class="book-grid">
+
+      </div>
+    <!-- </div> .my-carousel -->
+  <!-- </div>  .well -->
 </div>

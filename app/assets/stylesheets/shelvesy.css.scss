@@ -161,3 +161,7 @@ div.review-list-item {
   float: left;
   margin-right: 8px;
 }
+
+.navbar a.email {
+  pointer-events: none;
+}
