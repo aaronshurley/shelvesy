@@ -24,9 +24,16 @@ module Api
       render :index
     end
 
+    def search
+      term = "%" + params[:search] + "%"
+      @books = Book.where("author LIKE ? OR title LIKE ?", term, term)
+
+      render :search_results
+    end
+
     private
     def book_params
-      params.require(:book).permit(:title, :author, :description, :isbn, :img_url_small, :img_url_med, :img_url_thumb, :ave_rating)
+      params.require(:book).permit(:title, :author, :description, :isbn, :img_url_small, :img_url_med, :img_url_thumb, :ave_rating, :search)
     end
   end
 end

@@ -44,7 +44,7 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
         model: this.model.userReview()
     });
     this.addSubview('.book-star-rating', starView);
-    $('.book-star-rating').attr("data-book-id", book_id);
+    // $('.book-star-rating').attr("data-book-id", book_id);
   },
   
   renderBtn: function() {

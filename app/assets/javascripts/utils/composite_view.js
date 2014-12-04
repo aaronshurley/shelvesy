@@ -60,5 +60,15 @@ Backbone.CompositeView = Backbone.View.extend({
       this._subviews[selector] = this._subviews[selector] || [];
       return this._subviews[selector];
     }
-  }
+  },
+  
+  onRender: function () {
+    _(this.subviews()).each(function (subviews) {
+      _(subviews).each(function (subview) {
+        if(subview.onRender) {
+          subview.onRender();
+        }
+      });
+    });
+  },
 });
