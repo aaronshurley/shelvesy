@@ -3,9 +3,6 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
   
   initialize: function () {
     this.listenTo(this.model, 'sync change:rating destroy add', this.render);
-    // this.$el.on('rating.change', this.handleRatingChange.bind(this));
-   //   this.$el.on('rating.clear', this.handleRatingChange.bind(this));
-    // this.render();
   },
   
   events: {
@@ -18,7 +15,7 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
     return this;
   },
   
-  onRender: function (attribute) {
+  onRender: function (timeout) {
     console.log("BookStarRating#onRender");
     
     setTimeout(function () {
@@ -26,25 +23,8 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
       if (this.model.attributes.rating) {
         this.$el.rating('update', this.model.attributes.rating);
       }
-    }.bind(this), 3000);
+    }.bind(this), timeout);
   },
-  
-  // initialize: function () {
-  //   this.listenTo(this.model, 'sync change:rating destroy add', this.render);
-  //   $('.book-star-rating').on('rating.change', this.handleRatingChange.bind(this));
-  //   $('.book-star-rating').on('rating.clear', this.handleRatingChange.bind(this));
-  // // },
-  //
-  // render: function() {
-  //   console.log("BookStarRating#render");
-  //
-  //   $('.book-star-rating').rating({size: 'sm', step: 1, showCaption: false});
-  //   if (this.model.attributes.rating) {
-  //     $('.book-star-rating').rating('update', this.model.escape('rating'));
-  //   }
-  //
-  //   return this;
-  // },
   
   handleRatingChange: function (event, value) {
     event.preventDefault();
@@ -52,16 +32,14 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
     if (value){
       console.log("handleRatingChange: " + value);
       this.model.set({
-        rating: value,
-        // book_id: $target.data('book-id')
+        rating: value
       });
       this.model.save();
     }
     else {
       console.log("handleRatingChange: clear");
       this.model.set({
-        rating: 0,
-        // book_id: $target.data('book-id')
+        rating: 0
       });
       this.model.save();
     }

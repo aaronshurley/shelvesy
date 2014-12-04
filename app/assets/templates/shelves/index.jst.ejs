@@ -5,7 +5,7 @@
       <li>
         <a href="#/shelves/<%= shelf.id %>"
           data-shelf-id="<%= shelf.id %>">
-          <%= shelf.escape('name') %>
+          <%= shelf.escape('name') %> (<%= shelf.books().length %>)
         </a>
         <% if (!((shelf.escape('name') === 'Currently Reading') ||
                 (shelf.escape('name') === 'Read') ||

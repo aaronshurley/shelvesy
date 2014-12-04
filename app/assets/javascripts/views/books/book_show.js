@@ -21,30 +21,18 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
     this.renderBtn();
     this.renderReviews();
     this.renderUserReview();
-
     this.renderStarRating();
+    this.onRender(1000);
     return this;
   },
   
-  // renderStarRating: function() {
-  //   console.log("BookShow#renderStarRating");
-  //   var book_id = this.model.id;
-  //   var starView = new Shelvesy.Views.BookStarRating({
-  //       model: this.model.userReview()
-  //   });
-  //   this.emptySubviews('.book-star-rating-container');
-  //   this.addSubview('.book-star-rating-container', starView);
-  // },
-  
   renderStarRating: function() {
     console.log("BookShow#renderStarRating");
-    this.emptySubviews('.book-star-rating');
     var book_id = this.model.id;
     var starView = new Shelvesy.Views.BookStarRating({
         model: this.model.userReview()
     });
     this.addSubview('.book-star-rating', starView);
-    // $('.book-star-rating').attr("data-book-id", book_id);
   },
   
   renderBtn: function() {
