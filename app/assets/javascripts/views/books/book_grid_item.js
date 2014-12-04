@@ -14,7 +14,7 @@ Shelvesy.Views.BookGridItemShow = Backbone.CompositeView.extend({
     });
     this.$el.html(content);
     this.renderBtn();
-    // this.renderStarRating();
+    this.renderStarRating();
     return this;
   },
   
@@ -28,18 +28,18 @@ Shelvesy.Views.BookGridItemShow = Backbone.CompositeView.extend({
     });
     this.emptySubviews('.book-add-to-shelf-btn');
     this.addSubview('.book-add-to-shelf-btn', btnView);
-  }// ,
-//
-//   renderStarRating: function() {
-//     console.log("BookGridItemShow#renderStarRating");
-//
-//     var starView = new Shelvesy.Views.BookStarRating({
-//         model: this.model.userReview()
-//     });
-//
-//     var book_id = this.model.id;
-//     this.emptySubviews('.book-star-rating');
-//     this.addSubview('.book-star-rating', starView);
-//     this.$('.book-star-rating').attr("data-book-id", book_id);
-//   }
+  },
+
+  renderStarRating: function() {
+    console.log("BookGridItemShow#renderStarRating");
+
+    var starView = new Shelvesy.Views.BookStarRating({
+        model: this.model.userReview()
+    });
+
+    var book_id = this.model.id;
+    this.emptySubviews('.book-star-rating');
+    this.addSubview('.book-star-rating', starView);
+    this.$('.book-star-rating').attr("data-book-id", book_id);
+  }
 });

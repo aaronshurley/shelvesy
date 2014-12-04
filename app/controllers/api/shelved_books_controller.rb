@@ -10,6 +10,11 @@ module Api
       end
     end
 
+    def index
+      @shelved_books = ShelvedBook.all
+      render json: @shelved_books
+    end
+
     def find
       @shelved_book = ShelvedBook.where(shelved_book_params)
       render json: @shelved_book

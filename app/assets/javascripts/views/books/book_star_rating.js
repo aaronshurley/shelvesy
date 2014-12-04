@@ -1,7 +1,7 @@
 Shelvesy.Views.BookStarRating = Backbone.View.extend({
   
   initialize: function () {
-    this.listenTo(this.model, 'sync change destroy add', this.render);
+    this.listenTo(this.model, 'sync change:rating destroy add', this.render);
     $('.book-star-rating').on('rating.change', this.handleRatingChange.bind(this));
     $('.book-star-rating').on('rating.clear', this.handleRatingChange.bind(this));
   },
