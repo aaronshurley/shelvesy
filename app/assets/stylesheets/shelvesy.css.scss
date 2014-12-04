@@ -26,12 +26,22 @@ h2 {
 .navbar-brand {
   font-family: $header-font;
   font-size: 36px;
+  clear: left;
 }
 
 // come back to this
 .navbar-brand img {
-  height: 20px;
-  width: 20px;
+  height: 36px;
+  width: 36px;
+  margin-top: -11px;
+  float: left;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.navbar-brand span {
+  float: left;
+  display: inline-block;
 }
 
 .book-list-item {
@@ -187,11 +197,12 @@ div.review-list-item {
 }
 
 .carousel-control.right, .carousel-control.left {
+  color: $barBorderColor;
   background-image: none;
 }
 
 .carousel-control.right:hover, .carousel-control.left:hover {
-  color: $barBorderColor;
+  color: #777777;
 }
 
 .row {
