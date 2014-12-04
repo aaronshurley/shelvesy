@@ -123,15 +123,23 @@ div.review-list-item {
   display: inline;
 }
 
-.shelf-item {
+.container div.shelf-item:last-of-type {
+  border-bottom: none;
+};
+
+.container div.shelf-item {
   clear: both;
+  overflow: auto;
+  border-bottom: 1px solid $barBorderColor;
 }
+
 
 .book-grid-item {
   display: inline;
   padding-left: 5px;
   padding-right: 5px;
   float: left;
+  width: 250px;
   text-align: center;
 }
 

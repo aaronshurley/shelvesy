@@ -109,5 +109,11 @@ Shelvesy.Models.Book = Backbone.Model.extend({
         console.log("Book#removeFromShelf FAIL");
       }
     });
+  },
+  
+  descLink: function () {
+    var text = this.escape('description').substring(0, 250);
+    var linktext = "<a href='#/books/" + this.id + "'> read more... </a>";
+    return text + linktext;
   }
 });

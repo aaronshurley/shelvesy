@@ -1,7 +1,15 @@
-<a href="#/books/<%= book.id %>">
+<a href="#/books/<%= book.id %>"
+   data-toggle="popover"
+   data-html="true"
+   data-content="<%= book.descLink() %>"
+   data-trigger="hover"
+   title="<a href='#/books/<%= book.id %>'><%= book.escape('title') %></a> <small>by <%= book.escape('author') %></small>"
+>
   <img src="<%= book.escape('img_url_small') %>">
 </a>
 <div class="book-add-to-shelf-btn">
 </div>
+<!-- <div class="book-star-rating-container">
+</div> -->
 <div class="book-star-rating">
 </div>

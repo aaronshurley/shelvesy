@@ -1,4 +1,23 @@
 Shelvesy.Views.BookStarRating = Backbone.View.extend({
+  // className: 'book-star-rating',
+  // initialize: function () {
+  //   this.listenTo(this.model, 'sync change:rating destroy add', this.render);
+  //   this.$el.on('rating.change', this.handleRatingChange.bind(this));
+  //   this.$el.on('rating.clear', this.handleRatingChange.bind(this));
+  //   this.render();
+  // },
+  //
+  // render: function() {
+  //   console.log("BookStarRating#render");
+  //
+  //   // something to do with the below?
+  //   this.$el.rating({size: 'sm', step: 1, showCaption: false});
+  //   if (this.model.attributes.rating) {
+  //     this.$el.rating('update', this.model.attributes.rating);
+  //   }
+  //   this.$el.attr("data-book-id", this.model.attributes.book_id);
+  //   return this;
+  // },
   
   initialize: function () {
     this.listenTo(this.model, 'sync change:rating destroy add', this.render);
