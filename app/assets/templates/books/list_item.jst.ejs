@@ -1,6 +1,10 @@
 <div class="book-list-item-left">
-  <img src="<%= book.escape('img_url_small') %>">
+  <a href="#/books/<%= book.id %>">
+    <img src="<%= book.escape('img_url_small') %>">
+  </a>
   <div class="book-add-to-shelf-btn">
+  </div>
+  <div class="book-star-rating">
   </div>
 </div>
 <div class="book-list-item-right">

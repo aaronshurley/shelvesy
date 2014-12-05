@@ -29,7 +29,6 @@ h2 {
   clear: left;
 }
 
-// come back to this
 .navbar-brand img {
   height: 36px;
   width: 36px;
@@ -48,19 +47,32 @@ h2 {
   border-top: 1px solid $barBorderColor;
   overflow: auto;
   padding: 10px;
+  clear: both;
 }
 
 .book-list-item-left {
+  width: 20%;
   float: left;
+  text-align: center;
 }
 
 .book-list-item-left img {
-  display: block;
   padding-top: 10px;
 }
 
+.book-list-item-left .btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
 .book-list-item-right {
-  margin-left: 190px;
+  width: 80%;
+  float: left;
+}
+
+.book-list-item-left .star-rating {
+  font-size: 1.5em;
 }
 
 .footer {
@@ -111,6 +123,10 @@ h2 {
 
 .user-review textarea {
   height: 100px;
+}
+
+.user-review-show button.add {
+  margin-left: 125px;
 }
 
 .book-reviews {

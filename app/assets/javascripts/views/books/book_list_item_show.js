@@ -5,19 +5,11 @@ Shelvesy.Views.BookListItemShow = Backbone.CompositeView.extend({
   initialize: function () {
     console.log("BookListItemShow#initialize");
     this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.model, 'sync', this.renderBtn);
+    this.listenTo(this.model.userReview(), 'sync', this.renderStarRating);
+    this.renderBtn();
+    this.renderStarRating();
   },
-
-  // come back to here
-  // renderBtn: function() {
-  //   console.log("BookShow#renderBtn");
-  //   Shelvesy.Collections.shelves.fetch();
-  //   var btnView = new Shelvesy.Views.BookAddToShelf({
-  //     model: this.model,
-  //     collection: Shelvesy.Collections.shelves
-  //   });
-  //   this.emptySubviews('.book-add-to-shelf-btn');
-  //   this.addSubview('.book-add-to-shelf-btn', btnView);
-  // },
 
   render: function () {
     console.log("BookListItemShow#render");
@@ -25,7 +17,28 @@ Shelvesy.Views.BookListItemShow = Backbone.CompositeView.extend({
       book: this.model
     });
     this.$el.html(content);
-    // this.renderBtn();
+    this.attachSubviews();
     return this;
+  },
+  
+  renderBtn: function() {
+    console.log("BookListItemShow#renderBtn");
+    Shelvesy.Collections.shelves.fetch();
+    
+    var btnView = new Shelvesy.Views.BookAddToShelf({
+      model: this.model,
+      collection: Shelvesy.Collections.shelves
+    });
+    this.emptySubviews('.book-add-to-shelf-btn');
+    this.addSubview('.book-add-to-shelf-btn', btnView);
+  },
+
+  renderStarRating: function() {
+    console.log("BookListItemShow#renderStarRating");
+    var starView = new Shelvesy.Views.BookStarRating({
+        model: this.model.userReview()
+    });
+
+    this.addSubview('.book-star-rating', starView);
   }
 });

@@ -17,10 +17,8 @@ Shelvesy.Views.BookGridItemShow = Backbone.CompositeView.extend({
       book: this.model
     });
     this.$el.html(content);
-    //this.renderBtn();
-    //this.renderStarRating();
     this.attachSubviews();
-    
+    this.$('button').addClass('btn-sm');
     // TODO: finish for popover average rating
     // this.$('.ave-rating-' + this.model.id).rating({size: 'xs', showClear: false, showCaption: false, readOnly: true, disabled: true});
     // this.$('.ave-rating-' + this.model.id).rating('update', this.model.escape('rating'));
@@ -46,15 +44,6 @@ Shelvesy.Views.BookGridItemShow = Backbone.CompositeView.extend({
         model: this.model.userReview()
     });
 
-    // var book_id = this.model.id;
-    // this.emptySubviews('.book-star-rating');
     this.addSubview('.book-star-rating', starView);
-    // this.$('.book-star-rating').attr("data-book-id", book_id);
-    
-    // var book_id = this.model.id;
-    // var selector = '.book-star-rating-' + book_id;
-    // this.emptySubviews(selector);
-    // this.addSubview(selector, starView);
-    // this.$(selector).attr("data-book-id", book_id);
   }
 });
