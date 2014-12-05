@@ -2,7 +2,8 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
   className: 'book-star-rating',
   
   initialize: function () {
-    this.listenTo(this.model, 'sync change:rating destroy add', this.render);
+    this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.model, 'destroy', this.removeView);
   },
   
   events: {
@@ -12,12 +13,19 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
 
   render: function() {
     console.log("BookStarRating#render");
+    this.onRender(1000);
     return this;
+  },
+  
+  removeView: function () {
+    this.remove();
   },
   
   onRender: function (timeout) {
     console.log("BookStarRating#onRender");
-    
+    if (this.$el.find('.star-rating').length > 0) {
+      this.emptySubviews('.star-rating');
+    }
     setTimeout(function () {
       this.$el.rating({ size: 'sm', step: 1, showCaption: false });
       if (this.model.attributes.rating) {

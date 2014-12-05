@@ -4,9 +4,9 @@ Shelvesy.Views.ReviewListShow = Backbone.CompositeView.extend({
   
   initialize: function () {
     console.log("ReviewListShow#init");
-    this.listenTo(this.collection, 'sync', this.render);
+    this.listenTo(this.collection, 'sync remove', this.render);
     this.listenTo(this.collection, 'add', this.addReview);
-    // this.listenTo(this.collection, 'remove', this.removeReview);
+    this.renderReviews();
   },
   
   addReview: function (review) {
@@ -25,7 +25,7 @@ Shelvesy.Views.ReviewListShow = Backbone.CompositeView.extend({
       reviews: this.collection
     });
     this.$el.html(content);
-    this.renderReviews();
+    this.attachSubviews();
     return this;
   },
   

@@ -22,6 +22,7 @@ Backbone.LinkFormView = Backbone.View.extend({
   },
 
   hideForm: function () {
+    console.log("link_form#hideForm");
     this.formShowing = false;
     this.render();
   },
@@ -33,6 +34,7 @@ Backbone.LinkFormView = Backbone.View.extend({
   },
 
   showForm: function (event) {
+    console.log("link_form#showForm");
     event.preventDefault();
     this.formShowing = true;
     this.render();

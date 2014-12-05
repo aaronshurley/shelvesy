@@ -25,7 +25,6 @@ Shelvesy.Views.MainViewShow = Backbone.CompositeView.extend({
     this.$el.html(content);
     // this.renderShelves();
     this.attachSubviews();
-    
 
     $("[data-toggle=popover]").popover({ 
       trigger: "manual", 
@@ -53,7 +52,6 @@ Shelvesy.Views.MainViewShow = Backbone.CompositeView.extend({
       });
       $('.my-carousel').on('slid.bs.carousel');
     }, 2000);
-    
     
     return this;
   },

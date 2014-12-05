@@ -5,9 +5,6 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.model.userReview(), 'sync remove', this.renderStarRating);
     this.listenTo(this.model.userReview(), 'sync remove', this.renderUserReview);
-    this.listenTo(this.collection, 'sync remove change:rating', this.renderStarRating);
-    this.listenTo(this.collection, 'sync remove change:rating', this.renderUserReview);
-
   },
   
   // TODO: refactor render function, move renders to initialize
@@ -29,6 +26,7 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
   renderStarRating: function() {
     console.log("BookShow#renderStarRating");
     var book_id = this.model.id;
+    this.emptySubviews('.book-star-rating');
     var starView = new Shelvesy.Views.BookStarRating({
         model: this.model.userReview()
     });

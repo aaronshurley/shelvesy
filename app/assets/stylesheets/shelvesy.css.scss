@@ -210,8 +210,14 @@ div.review-list-item {
   margin-right: 50px;
 }
 
+.row .book-star-rating .star-rating {
+  padding-bottom: 65px;
+}
+
 .well {
   background-color: white;
   border: none;
   box-shadow: none;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
 }
