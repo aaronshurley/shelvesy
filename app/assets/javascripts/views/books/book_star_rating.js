@@ -13,7 +13,7 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
 
   render: function() {
     console.log("BookStarRating#render");
-    this.onRender(1000);
+    this.onRender(0);
     return this;
   },
   

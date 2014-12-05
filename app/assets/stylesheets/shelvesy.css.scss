@@ -184,6 +184,10 @@ div.review-list-item {
   width: 128px;
 }
 
+.book-grid-container:last-of-type {
+  padding-bottom: 50px;
+};
+
 .book-grid-item a img:hover {
   border: 1px solid $barBorderColor;
 }
@@ -224,9 +228,6 @@ div.review-list-item {
   margin-right: 50px;
 }
 
-.row .book-star-rating .star-rating {
-  padding-bottom: 65px;
-}
 
 .well {
   background-color: white;
