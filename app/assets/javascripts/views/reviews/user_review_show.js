@@ -15,7 +15,8 @@ Shelvesy.Views.UserReviewShow = Backbone.LinkFormView.extend({
   initialize: function () {
     console.log("UserReviewShow#initialize");
     
-    this.listenTo(this.model, 'sync change:body destroy', this.render);
+    this.listenTo(this.model, 'sync change:body', this.render);
+    this.listenTo(this.model, 'destroy', this.removeView);
     this.listenTo(this.collection, '');
   },
 
@@ -54,6 +55,9 @@ Shelvesy.Views.UserReviewShow = Backbone.LinkFormView.extend({
     event.preventDefault();
     this.collection.remove(this.model);
     this.model.destroy();
-    this.hideForm();
+  },
+  
+  removeView: function (event) {
+    this.remove();
   }
 });

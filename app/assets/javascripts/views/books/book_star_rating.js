@@ -44,10 +44,11 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
       });
       this.model.save();
     }
+    // delete review if no body???
     else {
       console.log("handleRatingChange: clear");
       this.model.set({
-        rating: 0
+        rating: null
       });
       this.model.save();
     }
