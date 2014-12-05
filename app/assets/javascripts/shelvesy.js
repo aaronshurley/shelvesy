@@ -21,4 +21,11 @@ $(document).ready(function(){
     var searchUrl = "#/books/search/?search=" + searchTerm;
     Backbone.history.navigate(searchUrl);
   });
+  
+  var $body = $('body');
+  
+  $("body").on({
+      ajaxStart: function() { $body.addClass("loading");    },
+       ajaxStop: function() { $body.removeClass("loading"); }
+  });
 });
