@@ -2,8 +2,9 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
   className: 'book-star-rating',
   
   initialize: function () {
+    console.log('cid from book star rating', this.model.cid)
     this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(this.model, 'destroy', this.removeView);
+    this.listenTo(this.model, 'destroy', this.onRender);
   },
   
   events: {
@@ -13,17 +14,18 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
 
   render: function() {
     console.log("BookStarRating#render");
-    this.onRender(0);
+    this.onRender(1000);
     return this;
   },
   
-  removeView: function () {
-    console.log("BookStarRating#REMOVE");
-    this.remove();
-  },
+  // removeView: function () {
+  //   console.log("BookStarRating#REMOVE");
+  //   this.remove();
+  // },
   
   onRender: function (timeout) {
     console.log("BookStarRating#onRender");
+    console.log(this.model.cid);
     if (this.$el.find('.star-rating').length > 0) {
       this.emptySubviews('.star-rating');
     }
@@ -31,6 +33,8 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
       this.$el.rating({ size: 'sm', step: 1, showCaption: false });
       if (this.model.attributes.rating) {
         this.$el.rating('update', this.model.attributes.rating);
+      } else {
+        this.$el.rating('update', 0);
       }
     }.bind(this), timeout);
   },
@@ -40,12 +44,16 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
     var $target = $(event.currentTarget);
     if (value){
       console.log("handleRatingChange: " + value);
-      if (this.collection) {
+      if (!this.model.collection && this.collection) {
         console.log("CHANGE w/ collection");
         this.model.set({
           rating: value
         });
-        this.collection.create(this.model);
+        this.model.save({}, {
+          success: function () {
+            this.collection.add(this.model);
+          }.bind(this)
+        });
       } else {
         console.log("CHANGE w/o collection");
         this.model.set({
@@ -57,12 +65,16 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
     // delete review if no body???
     else {
       console.log("handleRatingChange: clear");
-      if (this.collection) {
+      if (!this.model.collection && this.collection) {
         console.log("CLEAR w/ collection");
         this.model.set({
           rating: null
         });
-        this.collection.create(this.model);
+        this.model.save({}, {
+          success: function () {
+            this.collection.add(this.model);
+          }.bind(this),
+        })
       } else {
         console.log("CLEAR w/o collection");
         this.model.set({

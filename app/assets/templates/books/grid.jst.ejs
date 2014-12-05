@@ -1,5 +1,5 @@
 <div class="shelf-item">
-  <% if (model.books().length > 0) { %>
+
     <% if (model.escape('name') === 'Currently Reading') { %>
       <h2>Have you finished any of these? <small><a href="#/shelves/<%= model.id %>"><%= model.escape('name') %> (<%= model.books().length %>)</a></small></h2>
     <% } else if (model.escape('name') === 'To Read') { %>
@@ -19,5 +19,5 @@
         <a class="right carousel-control" href=".my-carousel-<%= model.id %>" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
       </div>
     </div>
-  <% } %>
+
 </div>

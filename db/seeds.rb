@@ -13,34 +13,52 @@ User.create(email: "test@gmail.com", password: "password")
   User.create(email: Faker::Internet.email, password: Faker::Internet.password)
 end
 
-# Populate with ~13 Books
-# 3 books
-ferriss_books = GoogleBooks.search('Tim Ferriss', {count: 3})
-ferriss_books.each do |book|
-  Book.create(title: book.title,
-    author: book.authors,
-    isbn: book.isbn_10,
-    description: book.description,
-    img_url_small: book.image_link,
-    img_url_med: book.image_link(:zoom => 2),
-    img_url_thumb: book.image_link(:zoom => 5),
-    ave_rating: book.average_rating
-  )
+def search_then_create(queryString, count)
+  books = GoogleBooks.search(queryString, {count: count})
+  books.each do |book|
+    Book.create(title: book.title,
+      author: book.authors,
+      isbn: book.isbn_10,
+      description: book.description,
+      img_url_small: book.image_link,
+      img_url_med: book.image_link(:zoom => 2),
+      img_url_thumb: book.image_link(:zoom => 5),
+      ave_rating: book.average_rating
+    )
+  end
 end
 
+search_then_create('Tim Ferriss', 3)
+search_then_create('Chuck Palahniuk', 5)
+
+# Populate with ~13 Books
+# 3 books
+# ferriss_books = GoogleBooks.search('Tim Ferriss', {count: 3})
+# ferriss_books.each do |book|
+#   Book.create(title: book.title,
+#     author: book.authors,
+#     isbn: book.isbn_10,
+#     description: book.description,
+#     img_url_small: book.image_link,
+#     img_url_med: book.image_link(:zoom => 2),
+#     img_url_thumb: book.image_link(:zoom => 5),
+#     ave_rating: book.average_rating
+#   )
+# end
+
 # 10 books
-palahniuk_books = GoogleBooks.search('Chuck Palahniuk', {count: 10})
-palahniuk_books.each do |book|
-  Book.create(title: book.title,
-    author: book.authors,
-    isbn: book.isbn_10,
-    description: book.description,
-    img_url_small: book.image_link,
-    img_url_med: book.image_link(:zoom => 2),
-    img_url_thumb: book.image_link(:zoom => 5),
-    ave_rating: book.average_rating
-  )
-end
+# palahniuk_books = GoogleBooks.search('Chuck Palahniuk', {count: 10})
+# palahniuk_books.each do |book|
+#   Book.create(title: book.title,
+#     author: book.authors,
+#     isbn: book.isbn_10,
+#     description: book.description,
+#     img_url_small: book.image_link,
+#     img_url_med: book.image_link(:zoom => 2),
+#     img_url_thumb: book.image_link(:zoom => 5),
+#     ave_rating: book.average_rating
+#   )
+# end
 
 # put half of the books on test's shelves
 user = User.find_by_email("test@gmail.com")

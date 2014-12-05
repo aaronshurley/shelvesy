@@ -28,7 +28,6 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
   
   renderStarRating: function() {
     console.log("BookShow#renderStarRating");
-    var book_id = this.model.id;
     this.emptySubviews('.book-star-rating');
     var starView = new Shelvesy.Views.BookStarRating({
         model: this.model.userReview(),

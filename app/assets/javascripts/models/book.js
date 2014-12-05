@@ -26,14 +26,24 @@ Shelvesy.Models.Book = Backbone.Model.extend({
   },
   
   parse: function (response) {
-    if (response.reviews) {
-      this.reviews().set(response.reviews, { parse: true });
-      delete response.reviews;
-    }
     if (response.current_user) {
       this._current_user = response.current_user;
       delete response.current_user;
     }
+    
+    if (response.reviews) {
+      _(response.reviews).each(function (rev) {
+        rev.book_id = response.id;
+        var review = new Shelvesy.Models.Review(rev, { parse: true });
+        this.reviews().add(review);
+        if(this._current_user && this._current_user.id === rev.user_id) {
+          this._user_review = review;
+        }
+      }.bind(this));
+      // this.reviews().set(response.reviews, { parse: true });
+      delete response.reviews;
+    }
+
     if (response.on_shelf) {
       this.on_shelf().set(response.on_shelf);
       delete response.on_shelf;
@@ -63,23 +73,17 @@ Shelvesy.Models.Book = Backbone.Model.extend({
   },
   
   userReview: function () {
-    var reviews = this.reviews();
-    
-    if (!this.user_review){
-      this._user_review = this._current_user && 
-        reviews.findWhere({user_id: this._current_user.id});
-    }
-    
+    // var reviews = this.reviews();
+
+    // if (!this._user_review) {
+    //   this._user_review = this._current_user &&
+    //     reviews.findWhere({ user_id: this._current_user.id });
+    // }
+
     if (!this._user_review) {
-      if (this._current_user) {
-        this._user_review = new Shelvesy.Models.Review({
-          book_id: this.id
-        });
-      } else {
-        this._user_review = new Shelvesy.Models.Review({
-          book_id: this.id
-        });
-      }
+      this._user_review = new Shelvesy.Models.Review({
+        book_id: this.id
+      });
     }
     
     return this._user_review;

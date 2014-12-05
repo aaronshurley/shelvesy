@@ -14,10 +14,11 @@ Shelvesy.Views.UserReviewShow = Backbone.LinkFormView.extend({
   
   initialize: function () {
     console.log("UserReviewShow#initialize");
+    console.log('cid from UserReviewShow', this.model.cid)
     
     this.listenTo(this.model, 'sync change:body', this.render);
-    this.listenTo(this.model, 'destroy', this.removeView);
-    this.listenTo(this.collection, '');
+    // this.listenTo(this.model, 'destroy', this.removeView);
+    // this.listenTo(this.collection, '');
   },
 
   render: function () {
@@ -53,8 +54,14 @@ Shelvesy.Views.UserReviewShow = Backbone.LinkFormView.extend({
   removeReview: function (event) {
     console.log("UserReviewShow#remove");
     event.preventDefault();
-    this.collection.remove(this.model);
+    // this.collection.remove(this.model);
+    console.log(this.model.cid);
+    var book_id = this.model.get('book_id')
     this.model.destroy();
+    this.model.clear();
+    this.model.set('book_id', book_id)
+    this.formShowing = false;
+    this.render();
   },
   
   removeView: function (event) {

@@ -77,6 +77,7 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
       model: book,
       collection: book.reviews()
     });
+    
     this.updateNavbar("Books");
     this._swapView(showView);
   },
