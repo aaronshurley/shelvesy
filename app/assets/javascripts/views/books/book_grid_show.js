@@ -6,7 +6,7 @@ Shelvesy.Views.BookGridShow = Backbone.CompositeView.extend({
     this._bookCount = 0;
     console.log("BookGridShow#initialize");
     this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(this.collection, 'sync', this.renderBooks);
+    // this.listenTo(this.collection, 'sync', this.renderBooks);
     this.renderBooks();
   },
   
@@ -23,7 +23,6 @@ Shelvesy.Views.BookGridShow = Backbone.CompositeView.extend({
     var currentRow = this.$('div.row').last();
     this.addSubview(currentRow, itemView);
     this._bookCount += 1;
-    // debugger;
   },
   
   render: function () {

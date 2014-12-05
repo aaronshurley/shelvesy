@@ -26,9 +26,9 @@ module Api
 
     def search
       term = "%" + params[:search] + "%"
-      @books = Book.where("author LIKE ? OR title LIKE ?", term, term)
+      @books = Book.where("LOWER(author) LIKE ? OR LOWER(title) LIKE ?", term.downcase, term.downcase)
 
-      render :search_results
+      render :index
     end
 
     private

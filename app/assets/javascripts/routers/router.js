@@ -7,6 +7,7 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
     '': 'index',
     'books/': 'booksIndex',
     'books/:id': 'bookShow',
+    'books/search/(?:queryString)': 'searchBookIndex',
     'books/shelved/': 'shelvedBookIndex',
     'shelves/': 'shelvesIndex',
     'shelves/:id': 'shelfShow'
@@ -51,20 +52,20 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
     this._swapView(indexView);
   },
   
-  // bookSearch: function() {
-//     console.log("Router#shelvedBookIndex");
-//
-//     var shelvedCollection = new Shelvesy.Collections.Books();
-//     shelvedCollection.url = 'api/books/shelved';
-//     shelvedCollection.fetch();
-//
-//     var indexView = new Shelvesy.Views.BooksIndex({
-//       collection: shelvedCollection
-//     });
-//
-//     this.updateNavbar("Books");
-//     this._swapView(indexView);
-//   },
+  searchBookIndex: function(queryString) {
+    console.log("Router#searchBookIndex");
+    
+    var shelvedCollection = new Shelvesy.Collections.Books();
+    shelvedCollection.url = 'api/books/search?' + queryString;
+    shelvedCollection.fetch();
+    
+    var indexView = new Shelvesy.Views.BooksIndex({
+      collection: shelvedCollection
+    });
+    
+    this.updateNavbar("Books");
+    this._swapView(indexView);
+  },
   
   bookShow: function(id) {
     console.log("Router#bookShow");

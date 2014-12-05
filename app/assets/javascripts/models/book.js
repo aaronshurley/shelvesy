@@ -116,7 +116,7 @@ Shelvesy.Models.Book = Backbone.Model.extend({
   
   descLink: function () {
     var text = this.escape('description').substring(0, 250);
-    var linktext = "<a href='#/books/" + this.id + "'> read more... </a>";
+    var linktext = "... <a href='#/books/" + this.id + "'>Read More!</a>";
     return text + linktext;
   }
 });
