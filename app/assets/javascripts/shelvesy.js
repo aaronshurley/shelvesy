@@ -13,7 +13,16 @@ window.Shelvesy = {
 };
 
 $(document).ready(function(){
+  
+  var $body = $("body");
+
+  $(document).on({
+      ajaxStart: function() { $body.addClass("loading");    },
+       ajaxStop: function() { $body.removeClass("loading"); }
+  });
+
   Shelvesy.initialize();
+
   $('.navbar-form').on('submit', function () {
     event.preventDefault();
     console.log(event.currentTarget.elements[0].value);
@@ -22,10 +31,5 @@ $(document).ready(function(){
     Backbone.history.navigate(searchUrl);
   });
   
-  var $body = $('body');
   
-  $("body").on({
-      ajaxStart: function() { $body.addClass("loading");    },
-       ajaxStop: function() { $body.removeClass("loading"); }
-  });
 });
