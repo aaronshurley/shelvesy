@@ -7,7 +7,7 @@
     <% } else if (model.escape('name') === 'Read') { %>
       <h2>Anything you want to add? <small><a href="#/shelves/<%= model.id %>"><%= model.escape('name') %> (<%= model.books().length %>)</a></small></h2>
     <% } else { %>
-      <h2><%= model.escape('name') %> (<%= model.books().length %>)</h2>
+      <h2><a href="#/shelves/<%= model.id %>"><%= model.escape('name') %> (<%= model.books().length %>)</a></h2>
     <% } %>
 
     <div class="well">

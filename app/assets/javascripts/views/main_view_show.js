@@ -6,7 +6,7 @@ Shelvesy.Views.MainViewShow = Backbone.CompositeView.extend({
     console.log("MainViewShow#initialize");
     this.listenTo(this.collection, 'sync add remove', this.render);
     this.listenTo(this.collection, 'add', this.addShelf);
-    // this.listenTo(this.collection, 'remove', this.removeShelf);
+    this.listenTo(this.collection, 'remove', this.removeShelf);
     this.collection.each(this.addShelf.bind(this));
   },
   
@@ -18,6 +18,18 @@ Shelvesy.Views.MainViewShow = Backbone.CompositeView.extend({
     });
     
     this.addSubview('.shelf-list', itemView);
+  },
+  
+  removeShelf: function (shelf) {
+    console.log("MainViewShow#removeShelf");
+    var itemView
+    _(this.subviews('.shelf-list')).each(function (subview) {
+      if(subview.model.id == review.id) {
+        itemView = subview;
+      }
+    });
+    
+    this.removeSubview('.shelf-list', itemView);
   },
   
   render: function () {
