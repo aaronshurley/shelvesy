@@ -71,9 +71,15 @@ Shelvesy.Models.Book = Backbone.Model.extend({
     }
     
     if (!this._user_review) {
-      this._user_review = new Shelvesy.Models.Review({
-        book_id: this.id
-      });
+      if (this._current_user) {
+        this._user_review = new Shelvesy.Models.Review({
+          book_id: this.id
+        });
+      } else {
+        this._user_review = new Shelvesy.Models.Review({
+          book_id: this.id
+        });
+      }
     }
     
     return this._user_review;

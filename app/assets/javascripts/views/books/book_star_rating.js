@@ -18,6 +18,7 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
   },
   
   removeView: function () {
+    console.log("BookStarRating#REMOVE");
     this.remove();
   },
   
@@ -39,18 +40,36 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
     var $target = $(event.currentTarget);
     if (value){
       console.log("handleRatingChange: " + value);
-      this.model.set({
-        rating: value
-      });
-      this.model.save();
+      if (this.collection) {
+        console.log("CHANGE w/ collection");
+        this.model.set({
+          rating: value
+        });
+        this.collection.create(this.model);
+      } else {
+        console.log("CHANGE w/o collection");
+        this.model.set({
+          rating: value
+        });
+        this.model.save();
+      }
     }
     // delete review if no body???
     else {
       console.log("handleRatingChange: clear");
-      this.model.set({
-        rating: null
-      });
-      this.model.save();
+      if (this.collection) {
+        console.log("CLEAR w/ collection");
+        this.model.set({
+          rating: null
+        });
+        this.collection.create(this.model);
+      } else {
+        console.log("CLEAR w/o collection");
+        this.model.set({
+          rating: null
+        });
+        this.model.save();
+      }
     }
   },
 });

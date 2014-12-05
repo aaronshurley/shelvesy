@@ -2,15 +2,17 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
   template: JST['books/show'],
   
   initialize: function () {
-    this._userReview = this.model.userReview();
     this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(this._userReview, 'sync destroy', this.renderStarRating);
-    this.listenTo(this._userReview, 'sync destroy', this.renderUserReview);
+    // this.listenTo(this.model.userReview(), 'sync destroy', this.renderStarRating);
+    // this.listenTo(this.model.userReview(), 'sync destroy', this.renderUserReview);
   },
   
   // TODO: refactor render function, move renders to initialize
   render: function() {
     console.log("BookShow#render");
+    // not deleting, not updating...
+    // this.listenTo(this.model.userReview(), 'destroy', this.renderStarRating);
+    this.listenTo(this.model.userReview(), 'sync destroy', this.renderUserReview);
     var content = this.template({
       book: this.model,
       review: this.model.userReview()
@@ -29,7 +31,8 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
     var book_id = this.model.id;
     this.emptySubviews('.book-star-rating');
     var starView = new Shelvesy.Views.BookStarRating({
-        model: this.model.userReview()
+        model: this.model.userReview(),
+        collection: this.model.reviews()
     });
     this.addSubview('.book-star-rating', starView);
   },

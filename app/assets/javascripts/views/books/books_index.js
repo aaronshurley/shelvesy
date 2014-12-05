@@ -14,6 +14,7 @@ Shelvesy.Views.BooksIndex = Backbone.CompositeView.extend({
       this._heading = "All Books";
     }
     var content = this.template({
+      count: this.collection.length,
       heading: this._heading
     });
     this.$el.html(content);

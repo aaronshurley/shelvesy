@@ -54,10 +54,12 @@ h2 {
   width: 20%;
   float: left;
   text-align: center;
+  padding-top: 10px;
 }
 
-.book-list-item-left img {
-  padding-top: 10px;
+
+.book-list-item-left a img:hover {
+  border: 1px solid $barBorderColor;
 }
 
 .book-list-item-left .btn {

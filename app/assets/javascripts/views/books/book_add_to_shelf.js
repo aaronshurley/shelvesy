@@ -8,6 +8,7 @@ Shelvesy.Views.BookAddToShelf = Backbone.View.extend({
   },
   
   initialize: function () {
+    console.log("BookAdToShelf#initialize");
     this.listenTo(this.collection, 'sync', this.render);
     this.listenTo(this.model, 'sync', this.render);
   },

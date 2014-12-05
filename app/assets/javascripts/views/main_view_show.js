@@ -4,8 +4,9 @@ Shelvesy.Views.MainViewShow = Backbone.CompositeView.extend({
   
   initialize: function () {
     console.log("MainViewShow#initialize");
-    this.listenTo(this.collection, 'sync', this.render);
+    this.listenTo(this.collection, 'sync add remove', this.render);
     this.listenTo(this.collection, 'add', this.addShelf);
+    // this.listenTo(this.collection, 'remove', this.removeShelf);
     this.collection.each(this.addShelf.bind(this));
   },
   

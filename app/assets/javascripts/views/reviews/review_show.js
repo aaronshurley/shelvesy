@@ -13,6 +13,7 @@ Shelvesy.Views.ReviewShow = Backbone.View.extend({
     var content = this.template({
       review: this.model
     });
+
     this.$el.html(content);
     this.renderStarRating();
     return this;
