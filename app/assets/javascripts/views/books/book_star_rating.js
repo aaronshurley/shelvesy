@@ -26,9 +26,10 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
   onRender: function (timeout) {
     console.log("BookStarRating#onRender");
     console.log(this.model.cid);
-    if (this.$el.find('.star-rating').length > 0) {
-      this.emptySubviews('.star-rating');
-    }
+    // if (this.$el.find('.star-rating').length > 0) {
+//       console.log("IN HERE");
+//       this.$el.html.empty();
+//     }
     setTimeout(function () {
       this.$el.rating({ size: 'sm', step: 1, showCaption: false });
       if (this.model.attributes.rating) {
@@ -70,18 +71,36 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
         this.model.set({
           rating: null
         });
-        this.model.save({}, {
-          success: function () {
-            this.collection.add(this.model);
-          }.bind(this),
-        })
+        if (!this.model.attributes.body) {
+          var book_id = this.model.get('book_id');
+          var user_id = this.model.get('user_id');
+          this.model.destroy();
+          this.model.clear();
+          this.model.set('book_id', book_id);
+          this.model.set('user_id', user_id);
+        } else {
+          this.model.save({}, {
+            success: function () {
+              this.collection.add(this.model);
+            }.bind(this),
+          })
+        }
       } else {
         console.log("CLEAR w/o collection");
         this.model.set({
           rating: null
         });
-        this.model.save();
+        if (!this.model.attributes.body) {
+          var book_id = this.model.get('book_id');
+          var user_id = this.model.get('user_id');
+          this.model.destroy();
+          this.model.clear();
+          this.model.set('book_id', book_id);
+          this.model.set('user_id', user_id);
+        } else {
+          this.model.save();
+        }
       }
     }
-  },
+  }
 });

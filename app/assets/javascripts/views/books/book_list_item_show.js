@@ -6,7 +6,7 @@ Shelvesy.Views.BookListItemShow = Backbone.CompositeView.extend({
     console.log("BookListItemShow#initialize");
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.model, 'sync', this.renderBtn);
-    this.listenTo(this.model.userReview(), 'sync', this.renderStarRating);
+    // this.listenTo(this.model.userReview(), 'sync', this.renderStarRating);
     this.renderBtn();
     this.renderStarRating();
   },

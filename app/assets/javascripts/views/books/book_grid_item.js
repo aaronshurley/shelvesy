@@ -6,7 +6,7 @@ Shelvesy.Views.BookGridItemShow = Backbone.CompositeView.extend({
     console.log("BookGridItemShow#initialize");
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.model, 'sync', this.renderBtn);
-    this.listenTo(this.model.userReview(), 'sync', this.renderStarRating);
+    // this.listenTo(this.model.userReview(), 'sync', this.renderStarRating);
     this.renderBtn();
     this.renderStarRating();
   },
@@ -24,7 +24,6 @@ Shelvesy.Views.BookGridItemShow = Backbone.CompositeView.extend({
   
   renderBtn: function() {
     console.log("BookGridItemShow#renderBtn");
-    // Shelvesy.Collections.shelves.fetch();
     
     var btnView = new Shelvesy.Views.BookAddToShelf({
       model: this.model,
@@ -36,6 +35,7 @@ Shelvesy.Views.BookGridItemShow = Backbone.CompositeView.extend({
 
   renderStarRating: function() {
     console.log("BookGridItemShow#renderStarRating");
+    this.emptySubviews('.book-star-rating');
     var starView = new Shelvesy.Views.BookStarRating({
         model: this.model.userReview()
     });
