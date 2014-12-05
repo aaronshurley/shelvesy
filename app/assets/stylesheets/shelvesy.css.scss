@@ -161,16 +161,14 @@ div.review-list-item {
   display: inline;
 }
 
-.container div.shelf-item:last-of-type {
-  border-bottom: none;
-};
-
 .container div.shelf-item {
   clear: both;
-  overflow: auto;
-  border-bottom: 1px solid $barBorderColor;
+  overflow: visible;
 }
 
+.well .carousel .carousel-inner {
+  overflow: visible;
+}
 
 .book-grid-item {
   display: inline;

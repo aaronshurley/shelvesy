@@ -32,7 +32,7 @@ Shelvesy.Views.BookGridShow = Backbone.CompositeView.extend({
     });
     this.$el.html(content);
     this.attachSubviews();
-    this.onRender(3000);
+    this.onRender(0);
     return this;
   },
   

@@ -6,7 +6,6 @@ Shelvesy.Views.ShelfShow = Backbone.CompositeView.extend({
     console.log("ShelfShow#init");
     this.collection = this.model.books();
     this.listenTo(this.model, 'sync', this.render);
-    // this.listenTo(this.collection, 'add', this.addBook);
   },
   
   render: function() {
