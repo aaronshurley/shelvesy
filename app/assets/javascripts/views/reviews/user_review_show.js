@@ -56,10 +56,12 @@ Shelvesy.Views.UserReviewShow = Backbone.LinkFormView.extend({
     event.preventDefault();
     // this.collection.remove(this.model);
     console.log(this.model.cid);
-    var book_id = this.model.get('book_id')
+    var book_id = this.model.get('book_id');
+    var user_id = this.model.get('user_id');
     this.model.destroy();
     this.model.clear();
-    this.model.set('book_id', book_id)
+    this.model.set('book_id', book_id);
+    this.model.set('user_id', user_id);
     this.formShowing = false;
     this.render();
   },

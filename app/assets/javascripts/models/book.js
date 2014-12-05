@@ -86,6 +86,12 @@ Shelvesy.Models.Book = Backbone.Model.extend({
       });
     }
     
+    if (this._current_user) {
+      if (!this._user_review.attributes.user_id) {
+        this._user_review.set('user_id', this._current_user.id);
+      }
+    }
+    
     return this._user_review;
   },
   

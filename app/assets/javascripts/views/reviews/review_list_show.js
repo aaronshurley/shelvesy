@@ -12,7 +12,7 @@ Shelvesy.Views.ReviewListShow = Backbone.CompositeView.extend({
   
   addReview: function (review) {
     console.log("ReviewListShow#addReview");
-  
+    // debugger;
     var itemView = new Shelvesy.Views.ReviewShow({
       model: review
     });
@@ -45,18 +45,5 @@ Shelvesy.Views.ReviewListShow = Backbone.CompositeView.extend({
   renderReviews: function() {
     console.log("ReviewListShow#renderReviews");
     this.collection.each(this.addReview.bind(this));
-  },
-  // TODO: COME BACK HERE
-  // removeReview: function() {
-//     console.log("ReviewListShow#removeReview");
-//     var $target = $(event.currentTarget);
-//     var reviewId = $target.find('button.remove').data("review-id");
-//     var reviewToRemove = this.collection.get(reviewId);
-//
-//     debugger
-//     var subviews = this.subviews('.review-list-show');
-//     var subviewToRemove = _.findWhere(subviews, {model: reviewToRemove});
-//     this.removeSubview('.review-list-show', subviewToRemove);
-//     reviewToRemove.destroy();
-//   }
+  }
 });
