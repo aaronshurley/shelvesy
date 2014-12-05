@@ -18,17 +18,13 @@ Shelvesy.Views.BookGridItemShow = Backbone.CompositeView.extend({
     });
     this.$el.html(content);
     this.attachSubviews();
-    this.$('button').addClass('btn-sm');
-    // TODO: finish for popover average rating
-    // this.$('.ave-rating-' + this.model.id).rating({size: 'xs', showClear: false, showCaption: false, readOnly: true, disabled: true});
-    // this.$('.ave-rating-' + this.model.id).rating('update', this.model.escape('rating'));
     
     return this;
   },
   
   renderBtn: function() {
     console.log("BookGridItemShow#renderBtn");
-    Shelvesy.Collections.shelves.fetch();
+    // Shelvesy.Collections.shelves.fetch();
     
     var btnView = new Shelvesy.Views.BookAddToShelf({
       model: this.model,

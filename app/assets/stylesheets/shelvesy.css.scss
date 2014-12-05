@@ -45,7 +45,7 @@ h2 {
 
 .book-list-item {
   border-top: 1px solid $barBorderColor;
-  overflow: auto;
+  overflow: visible;
   padding: 10px;
   clear: both;
 }

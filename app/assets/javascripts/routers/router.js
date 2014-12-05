@@ -30,8 +30,7 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
     Shelvesy.Collections.books.fetch();
     
     var indexView = new Shelvesy.Views.BooksIndex({
-      collection: Shelvesy.Collections.books,
-      heading: 'All Books'
+      collection: Shelvesy.Collections.books
     });
     this.updateNavbar("Books");
     this._swapView(indexView);
@@ -45,8 +44,8 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
     shelvedCollection.fetch();
     
     var indexView = new Shelvesy.Views.BooksIndex({
-      collection: shelvedCollection
-    });
+      collection: shelvedCollection,
+    }, {heading: "My Books"});
     
     this.updateNavbar("Books");
     this._swapView(indexView);

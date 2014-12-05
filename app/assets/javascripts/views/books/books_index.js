@@ -1,18 +1,30 @@
 Shelvesy.Views.BooksIndex = Backbone.CompositeView.extend({
   template: JST['books/index'],
+  className: '.book-index',
   
   initialize: function () {
-    console.log("BooksIndex#initialize");
+    if (arguments && arguments[1] && arguments[1].heading) {
+      this._heading = arguments[1].heading;
+    }
     this.listenTo(this.collection, 'sync', this.render);
   },
   
   render: function() {
-    console.log("BooksIndex#render");
+    if (!this._heading) {
+      this._heading = "All Books";
+    }
     var content = this.template({
-      books: this.collection,
-      heading: this.heading
+      heading: this._heading
     });
     this.$el.html(content);
+    this.renderBookList();
     return this;
+  },
+  
+  renderBookList: function() {
+    var showView = new Shelvesy.Views.BookListShow({
+      collection: this.collection
+    });
+    this.addSubview('.books-list', showView);
   }
 });

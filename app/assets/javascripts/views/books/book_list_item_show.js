@@ -23,7 +23,7 @@ Shelvesy.Views.BookListItemShow = Backbone.CompositeView.extend({
   
   renderBtn: function() {
     console.log("BookListItemShow#renderBtn");
-    Shelvesy.Collections.shelves.fetch();
+    // Shelvesy.Collections.shelves.fetch();
     
     var btnView = new Shelvesy.Views.BookAddToShelf({
       model: this.model,

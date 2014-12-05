@@ -8,7 +8,7 @@ Shelvesy.Views.BookAddToShelf = Backbone.View.extend({
   },
   
   initialize: function () {
-    this.listenTo(this.collection, 'add sync reset remove', this.render);
+    this.listenTo(this.collection, 'sync', this.render);
     this.listenTo(this.model, 'sync', this.render);
   },
   
@@ -41,7 +41,6 @@ Shelvesy.Views.BookAddToShelf = Backbone.View.extend({
     return this;
   },
   
-
   addToShelf: function(event) {
     console.log("BookAddToShelf#addToShelf");
     event.preventDefault();
@@ -49,7 +48,6 @@ Shelvesy.Views.BookAddToShelf = Backbone.View.extend({
     var $target = $(event.currentTarget);
     var shelfId = $target.data("shelf-id");
     console.log(shelfId);
-
     this.model.addToShelf(shelfId, this.render.bind(this));
     
     return this;

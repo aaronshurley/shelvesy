@@ -51,7 +51,7 @@ Shelvesy.Views.MainViewShow = Backbone.CompositeView.extend({
       	interval: false
       });
       $('.my-carousel').on('slid.bs.carousel');
-    }, 2000);
+    }, 1000);
     
     return this;
   },
