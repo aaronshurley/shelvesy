@@ -16,11 +16,11 @@ reviews.push("Not so hot; phony intellectuals are told this is a great work so t
 reviews.push("Don't ever read this. Okay, a dog could really go from being spoiled in California to the best dog in the Yukon. Huh, believable, right? Take my advice, don't read!!!!!!!!!!!!!!!!!!!")
 reviews.push("This book won the NOBEL Prize? I just can't help it, I need to write another review. This book should be placed in Solitary Confinement for 100 years. This is to save both time and trees used in printing of this book. Do not even dare buy this book even from a 2nd hand bookstore. Believe me, do not waste your money.")
 
-# Populate with 20 Users
+# Populate with 5 Users
 User.create(email: "me@gmail.com", password: "password")
 User.create(email: "test@gmail.com", password: "password")
 User.create(email: "username@gmail.com", password: "password")
-17.times do
+2.times do
   User.create(email: Faker::Internet.email, password: Faker::Internet.password)
 end
 
@@ -39,26 +39,21 @@ def search_then_create(queryString, count)
   end
 end
 
-# Populate with ~50
-search_then_create('Javascript', 7)
-search_then_create('Ruby', 7)
-search_then_create('Tim Ferriss', 3)
+# Populate with ~20
+search_then_create('Javascript', 2)
+search_then_create('Ruby', 2)
+search_then_create('Tim Ferriss', 2)
 search_then_create('Ramit Sethi', 1)
-search_then_create('Cooking', 5)
-search_then_create('Running', 3)
-search_then_create('Dogs', 3)
-search_then_create('Bill Simmons', 2)
+search_then_create('Cooking', 2)
+search_then_create('Running', 1)
+search_then_create('Dogs', 1)
+search_then_create('Bill Simmons', 1)
 search_then_create('Malcolm Gladwell', 3)
-search_then_create('Freakonomics', 3)
-search_then_create('Michael Pollan', 3)
-search_then_create('Science', 3)
-search_then_create('Kelly Starret', 2)
-search_then_create('Wisconsin', 3)
-search_then_create('Green Bay Packers', 3)
-search_then_create('Badgers', 3)
-search_then_create('Beer', 5)
-search_then_create('Fantasy Football', 3)
-search_then_create('Homebrewing', 3)
+search_then_create('Wisconsin', 1)
+search_then_create('Green Bay Packers', 1)
+search_then_create('Badgers', 1)
+search_then_create('Beer', 1)
+search_then_create('Homebrewing', 1)
 
 # put half of the books on me's shelves
 user = User.find_by_email("me@gmail.com")
@@ -79,52 +74,45 @@ Book.all.slice(0, Book.all.count / 2).each do |book|
 end
 
 # put half of the books on test's shelves
-user1 = User.find_by_email("test@gmail.com")
-Book.all.slice(0, Book.all.count / 2).each do |book|
-  shelf = user1.shelves.sample
-  ShelvedBook.create(
-    book_id: book.id,
-    shelf_id: shelf.id
-  )
-  if shelf.name == "Read"
-    Review.create(
-      body: reviews.sample,
-      rating: (Random.rand(5) + 1),
-      book_id: book.id,
-      user_id: user1.id
-    )
-  end
-end
+# user1 = User.find_by_email("test@gmail.com")
+# Book.all.slice(0, Book.all.count / 2).each do |book|
+#   shelf = user1.shelves.sample
+#   ShelvedBook.create(
+#     book_id: book.id,
+#     shelf_id: shelf.id
+#   )
+#   if shelf.name == "Read"
+#     Review.create(
+#       body: reviews.sample,
+#       rating: (Random.rand(5) + 1),
+#       book_id: book.id,
+#       user_id: user1.id
+#     )
+#   end
+# end
 
 # put half of the books on username's shelves
-user2 = User.find_by_email("username@gmail.com")
-Book.all.slice(0, Book.all.count / 2).each do |book|
-  shelf = user2.shelves.sample
-  ShelvedBook.create(
-    book_id: book.id,
-    shelf_id: shelf.id
-  )
-  if shelf.name == "Read"
-    Review.create(
-      body: reviews.sample,
-      rating: (Random.rand(5) + 1),
-      book_id: book.id,
-      user_id: user2.id
-    )
-  end
-end
+# user2 = User.find_by_email("username@gmail.com")
+# Book.all.slice(0, Book.all.count / 2).each do |book|
+#   shelf = user2.shelves.sample
+#   ShelvedBook.create(
+#     book_id: book.id,
+#     shelf_id: shelf.id
+#   )
+#   if shelf.name == "Read"
+#     Review.create(
+#       body: reviews.sample,
+#       rating: (Random.rand(5) + 1),
+#       book_id: book.id,
+#       user_id: user2.id
+#     )
+#   end
+# end
 
 # select 5 users to review half of the books
-count = 0
-while count < 5 do
-  user = User.all.sample
+User.all.each do |user|
   unless user.email == "me@gmail.com"
-    shelf = user.shelves.find_by_name("Read")
-    Book.all.slice(0, Book.all.count / 2).each do |book|
-      ShelvedBook.create(
-        book_id: book.id,
-        shelf_id: shelf.id
-      )
+    Book.all.each do |book|
       Review.create(
         body: reviews.sample,
         rating: (Random.rand(5) + 1),
@@ -132,6 +120,5 @@ while count < 5 do
         user_id: user.id
       )
     end
-    count += 1
   end
 end
