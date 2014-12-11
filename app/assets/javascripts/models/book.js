@@ -40,7 +40,7 @@ Shelvesy.Models.Book = Backbone.Model.extend({
           this._user_review = review;
         }
       }.bind(this));
-      // this.reviews().set(response.reviews, { parse: true });
+      
       delete response.reviews;
     }
 
@@ -62,24 +62,13 @@ Shelvesy.Models.Book = Backbone.Model.extend({
         date_added: new Date()
       }},
       success: function (resp) {
-        console.log("Book#addToShelf YAY");
         this.set(this.parse(resp));
         successCallback();
-      }.bind(this),
-      error: function () {
-        console.log("Book#addToShelf FAIL");
-      }
+      }.bind(this)
     });
   },
   
   userReview: function () {
-    // var reviews = this.reviews();
-
-    // if (!this._user_review) {
-    //   this._user_review = this._current_user &&
-    //     reviews.findWhere({ user_id: this._current_user.id });
-    // }
-
     if (!this._user_review) {
       this._user_review = new Shelvesy.Models.Review({
         book_id: this.id
@@ -105,12 +94,8 @@ Shelvesy.Models.Book = Backbone.Model.extend({
         book_id: this.id
       }},
       success: function (data) {
-        console.log("Book#findThenDelete YAY");
         var shelvedBookId = data[0].id;
         that.removeFromShelf(shelvedBookId, successCallback);
-      },
-      error: function () {
-        console.log("Book#findThenDelete FAIL");
       }
     });
   },
@@ -120,13 +105,9 @@ Shelvesy.Models.Book = Backbone.Model.extend({
       type: 'DELETE',
       url: '/api/shelved_books/' + shelvedBookId,
       success: function () {
-        console.log("Book#removeFromShelf YAY");
         this._on_shelf = undefined;
         successCallback();
-      }.bind(this),
-      error: function () {
-        console.log("Book#removeFromShelf FAIL");
-      }
+      }.bind(this)
     });
   },
   

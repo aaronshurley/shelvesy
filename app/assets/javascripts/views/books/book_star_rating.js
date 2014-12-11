@@ -3,7 +3,7 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
   
   initialize: function () {
     console.log('cid from book star rating', this.model.cid)
-    this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.model, 'sync change:rating', this.render);
     this.listenTo(this.model, 'destroy', this.onRender);
   },
   
@@ -17,11 +17,6 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
     this.onRender(1000);
     return this;
   },
-  
-  // removeView: function () {
-  //   console.log("BookStarRating#REMOVE");
-  //   this.remove();
-  // },
   
   onRender: function (timeout) {
     console.log("BookStarRating#onRender");
@@ -63,7 +58,6 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
         this.model.save();
       }
     }
-    // delete review if no body???
     else {
       console.log("handleRatingChange: clear");
       if (!this.model.collection && this.collection) {
@@ -71,6 +65,7 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
         this.model.set({
           rating: null
         });
+        // delete review if no body
         if (!this.model.attributes.body) {
           var book_id = this.model.get('book_id');
           var user_id = this.model.get('user_id');

@@ -6,7 +6,6 @@ Shelvesy.Views.BookGridItemShow = Backbone.CompositeView.extend({
     console.log("BookGridItemShow#initialize");
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.model, 'sync', this.renderBtn);
-    // this.listenTo(this.model.userReview(), 'sync', this.renderStarRating);
     this.renderBtn();
     this.renderStarRating();
   },

@@ -28,10 +28,11 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
   booksIndex: function() {
     console.log("Router#booksIndex");
     
-    Shelvesy.Collections.books.fetch();
+    var allBooks = new Shelvesy.Collections.Books();
+    allBooks.fetch();
     
     var indexView = new Shelvesy.Views.BooksIndex({
-      collection: Shelvesy.Collections.books
+      collection: allBooks
     });
     this.updateNavbar("Books");
     this._swapView(indexView);
