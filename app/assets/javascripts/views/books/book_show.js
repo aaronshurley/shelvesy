@@ -5,7 +5,6 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
     this.listenTo(this.model, 'sync', this.render);
   },
   
-  // TODO: refactor render function, move renders to initialize
   render: function() {
     console.log("BookShow#render");
     this.listenTo(this.model.userReview(), 'sync destroy', this.renderUserReview);
