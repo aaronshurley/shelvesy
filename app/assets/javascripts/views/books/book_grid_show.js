@@ -6,8 +6,9 @@ Shelvesy.Views.BookGridShow = Backbone.CompositeView.extend({
     this._bookCount = 0;
     console.log("BookGridShow#initialize");
     this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(this.collection, 'add', this.addBook);
-    this.listenTo(this.collection, 'remove', this.removeBook);
+    this.listenTo(this.collection, 'add remove', this.renderBooks);
+    // this.listenTo(this.collection, 'add', this.addBook);
+    // this.listenTo(this.collection, 'remove', this.removeBook);
     this.renderBooks();
   },
   
@@ -51,6 +52,7 @@ Shelvesy.Views.BookGridShow = Backbone.CompositeView.extend({
   
   renderBooks: function () {
     console.log("BookGridShow#renderBooks");
+    this.emptySubviews('.book-grid');
     var rowView;
     this.collection.each(function( book, i ) {
       if(i === 0 || i % 4 === 0) {

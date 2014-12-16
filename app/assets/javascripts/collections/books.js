@@ -25,3 +25,5 @@ Shelvesy.Collections.Books = Backbone.Collection.extend({
     return book;
   }
 });
+
+Shelvesy.Collections.books = new Shelvesy.Collections.Books();
