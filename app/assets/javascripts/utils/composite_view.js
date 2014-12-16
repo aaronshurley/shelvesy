@@ -29,8 +29,10 @@ Backbone.CompositeView = Backbone.View.extend({
   emptySubviews: function (selector) {
     var subviews = this.subviews(selector);
     _(this.subviews(selector)).each(function (subview) {
-      subview.remove();
-      subviews.splice(subviews.indexOf(subview), 1);
+      if (subview) {
+        subview.remove();
+        subviews.splice(subviews.indexOf(subview), 1);
+      }
     });
   },
 

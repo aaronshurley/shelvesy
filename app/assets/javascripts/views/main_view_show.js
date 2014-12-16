@@ -22,7 +22,7 @@ Shelvesy.Views.MainViewShow = Backbone.CompositeView.extend({
   
   removeShelf: function (shelf) {
     console.log("MainViewShow#removeShelf");
-    var itemView
+    var itemView;
     _(this.subviews('.shelf-list')).each(function (subview) {
       if(subview.model.id == review.id) {
         itemView = subview;
@@ -67,10 +67,5 @@ Shelvesy.Views.MainViewShow = Backbone.CompositeView.extend({
     }, 0);
     
     return this;
-  },
-  
-  renderShelves: function () {
-    console.log("MainViewShow#renderBooks");
-    this.collection.each(this.addShelf.bind(this));
   }
 });
