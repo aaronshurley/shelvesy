@@ -6,7 +6,6 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
   },
   
   render: function() {
-    console.log("BookShow#render");
     this.listenTo(this.model.userReview(), 'sync destroy', this.renderUserReview);
     var content = this.template({
       book: this.model,
@@ -22,7 +21,6 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
   },
   
   renderStarRating: function() {
-    console.log("BookShow#renderStarRating");
     this.emptySubviews('.book-star-rating');
     var starView = new Shelvesy.Views.BookStarRating({
         model: this.model.userReview(),
@@ -32,7 +30,6 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
   },
   
   renderBtn: function() {
-    console.log("BookShow#renderBtn");
     Shelvesy.Collections.shelves.fetch();
     var btnView = new Shelvesy.Views.BookAddToShelf({
       model: this.model,
@@ -43,7 +40,6 @@ Shelvesy.Views.BookShow = Backbone.CompositeView.extend({
   },
   
   renderUserReview: function() {
-    console.log("BookShow#renderUserReview");
     var review = this.model.userReview();
     
     var userReviewShow = new Shelvesy.Views.UserReviewShow({

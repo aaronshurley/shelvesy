@@ -13,18 +13,13 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
   },
 
   render: function() {
-    console.log("BookStarRating#render");
+    // the star rating plugin needs a second to load
     this.onRender(1000);
     return this;
   },
   
   onRender: function (timeout) {
-    console.log("BookStarRating#onRender");
     console.log(this.model.cid);
-    // if (this.$el.find('.star-rating').length > 0) {
-//       console.log("IN HERE");
-//       this.$el.html.empty();
-//     }
     setTimeout(function () {
       this.$el.rating({ size: 'sm', step: 1, showCaption: false });
       if (this.model.attributes.rating) {
@@ -39,9 +34,7 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
     event.preventDefault();
     var $target = $(event.currentTarget);
     if (value){
-      console.log("handleRatingChange: " + value);
       if (!this.model.collection && this.collection) {
-        console.log("CHANGE w/ collection");
         this.model.set({
           rating: value
         });
@@ -51,7 +44,6 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
           }.bind(this)
         });
       } else {
-        console.log("CHANGE w/o collection");
         this.model.set({
           rating: value
         });
@@ -59,9 +51,7 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
       }
     }
     else {
-      console.log("handleRatingChange: clear");
       if (!this.model.collection && this.collection) {
-        console.log("CLEAR w/ collection");
         this.model.set({
           rating: null
         });
@@ -81,7 +71,6 @@ Shelvesy.Views.BookStarRating = Backbone.View.extend({
           })
         }
       } else {
-        console.log("CLEAR w/o collection");
         this.model.set({
           rating: null
         });

@@ -3,7 +3,6 @@ Shelvesy.Views.MainViewShow = Backbone.CompositeView.extend({
   className: 'main-container',
   
   initialize: function () {
-    console.log("MainViewShow#initialize");
     this.listenTo(this.collection, 'sync add remove', this.render);
     this.listenTo(this.collection, 'add', this.addShelf);
     this.listenTo(this.collection, 'remove', this.removeShelf);
@@ -11,7 +10,6 @@ Shelvesy.Views.MainViewShow = Backbone.CompositeView.extend({
   },
   
   addShelf: function (shelf) {
-    console.log("MainViewShow#addBook");
     var itemView = new Shelvesy.Views.BookGridShow({
       model: shelf,
       collection: shelf.books()
@@ -21,7 +19,6 @@ Shelvesy.Views.MainViewShow = Backbone.CompositeView.extend({
   },
   
   removeShelf: function (shelf) {
-    console.log("MainViewShow#removeShelf");
     var itemView;
     _(this.subviews('.shelf-list')).each(function (subview) {
       if(subview.model.id == review.id) {
@@ -33,10 +30,8 @@ Shelvesy.Views.MainViewShow = Backbone.CompositeView.extend({
   },
   
   render: function () {
-    console.log("MainViewShow#render");
     var content = this.template();
     this.$el.html(content);
-    // this.renderShelves();
     this.attachSubviews();
 
     $("[data-toggle=popover]").popover({ 

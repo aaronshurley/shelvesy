@@ -3,7 +3,6 @@ Shelvesy.Views.BookGridItemShow = Backbone.CompositeView.extend({
   className: 'book-grid-item',
   
   initialize: function () {
-    console.log("BookGridItemShow#initialize");
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.model, 'sync', this.renderBtn);
     this.renderBtn();
@@ -11,7 +10,6 @@ Shelvesy.Views.BookGridItemShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    console.log("BookGridItemShow#render");
     var content = this.template({
       book: this.model
     });
@@ -22,8 +20,6 @@ Shelvesy.Views.BookGridItemShow = Backbone.CompositeView.extend({
   },
   
   renderBtn: function() {
-    console.log("BookGridItemShow#renderBtn");
-    
     var btnView = new Shelvesy.Views.BookAddToShelf({
       model: this.model,
       collection: Shelvesy.Collections.shelves
@@ -33,7 +29,6 @@ Shelvesy.Views.BookGridItemShow = Backbone.CompositeView.extend({
   },
 
   renderStarRating: function() {
-    console.log("BookGridItemShow#renderStarRating");
     this.emptySubviews('.book-star-rating');
     var starView = new Shelvesy.Views.BookStarRating({
         model: this.model.userReview()

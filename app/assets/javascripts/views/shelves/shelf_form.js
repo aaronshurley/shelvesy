@@ -3,7 +3,6 @@ Shelvesy.Views.ShelfForm = Backbone.LinkFormView.extend({
   linkTemplate: JST['shelves/form_link'],
 
   create: function (event) {
-    console.log("ShelfForm#create");
     event.preventDefault();
         
     this.collection.create({
@@ -15,7 +14,6 @@ Shelvesy.Views.ShelfForm = Backbone.LinkFormView.extend({
   },
 
   render: function () {
-    console.log("ShelfForm#render");
     var content;
     if(this.formShowing) {
       content = this.formTemplate();

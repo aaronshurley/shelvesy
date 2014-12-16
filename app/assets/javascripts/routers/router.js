@@ -15,7 +15,6 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
   },
   
   index: function(){
-    console.log("Router#index");
     this.updateNavbar("Home");
     Shelvesy.Collections.shelves.fetch();
 
@@ -26,8 +25,6 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
   },
   
   booksIndex: function() {
-    console.log("Router#booksIndex");
-    
     var allBooks = new Shelvesy.Collections.Books();
     allBooks.fetch();
     
@@ -39,8 +36,6 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
   },
   
   shelvedBookIndex: function() {
-    console.log("Router#shelvedBookIndex");
-    
     var shelvedCollection = new Shelvesy.Collections.Books();
     shelvedCollection.url = 'api/books/shelved';
     shelvedCollection.fetch();
@@ -54,8 +49,6 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
   },
   
   searchBookIndex: function(queryString) {
-    console.log("Router#searchBookIndex");
-    
     var shelvedCollection = new Shelvesy.Collections.Books();
     shelvedCollection.url = 'api/books/search?' + queryString;
     shelvedCollection.fetch();
@@ -69,8 +62,6 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
   },
   
   bookShow: function(id) {
-    console.log("Router#bookShow");
-    
     var book = new Shelvesy.Models.Book({id: id});
     book.fetch();
     
@@ -93,7 +84,6 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
   },
   
   shelvesIndex: function() {
-    console.log("Router#shelvesIndex");
     Shelvesy.Collections.shelves.fetch();
     var indexView = new Shelvesy.Views.ShelvesIndex({
       collection: Shelvesy.Collections.shelves
@@ -114,7 +104,6 @@ Shelvesy.Routers.Router = Backbone.Router.extend({
   },
   
   updateNavbar: function(page) {
-    console.log("Router#updateNavbar");
     var selector = 'ul#nav-main > li' + ':contains("' + page + '")';
     $('ul#nav-main > li').removeClass("active");
     $(selector).addClass("active");

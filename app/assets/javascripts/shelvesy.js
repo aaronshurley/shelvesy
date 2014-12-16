@@ -13,7 +13,6 @@ window.Shelvesy = {
 };
 
 $(document).ready(function(){
-  // TODO: come back to this and fix the global loader?
   var $body = $("body");
   $(document).on({
       ajaxStart: function() { $body.addClass("loading");    },

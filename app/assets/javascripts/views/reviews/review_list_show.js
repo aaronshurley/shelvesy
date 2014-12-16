@@ -3,7 +3,6 @@ Shelvesy.Views.ReviewListShow = Backbone.CompositeView.extend({
   className: 'reviews-list',
   
   initialize: function () {
-    console.log("ReviewListShow#init");
     this.listenTo(this.collection, 'sync remove', this.render);
     this.listenTo(this.collection, 'add', this.addReview);
     this.listenTo(this.collection, 'remove', this.removeReview);
@@ -11,8 +10,6 @@ Shelvesy.Views.ReviewListShow = Backbone.CompositeView.extend({
   },
   
   addReview: function (review) {
-    console.log("ReviewListShow#addReview");
-    // debugger;
     var itemView = new Shelvesy.Views.ReviewShow({
       model: review
     });
@@ -21,7 +18,6 @@ Shelvesy.Views.ReviewListShow = Backbone.CompositeView.extend({
   },
   
   removeReview: function (review) {
-    console.log("ReviewListShow#addReview");
     var itemView
     _(this.subviews('.review-list-show')).each(function (subview) {
       if(subview.model.id == review.id) {
@@ -33,7 +29,6 @@ Shelvesy.Views.ReviewListShow = Backbone.CompositeView.extend({
   },
   
   render: function() {
-    console.log("ReviewListShow#render");
     var content = this.template({
       reviews: this.collection
     });
@@ -43,7 +38,6 @@ Shelvesy.Views.ReviewListShow = Backbone.CompositeView.extend({
   },
   
   renderReviews: function() {
-    console.log("ReviewListShow#renderReviews");
     this.collection.each(this.addReview.bind(this));
   }
 });

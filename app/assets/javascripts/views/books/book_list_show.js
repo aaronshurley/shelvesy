@@ -3,14 +3,10 @@ Shelvesy.Views.BookListShow = Backbone.CompositeView.extend({
   className: 'book-list-container',
   
   initialize: function () {
-    console.log("BookListShow#initialize");
     this.listenTo(this.collection, 'sync', this.render);
-    // this.listenTo(this.collection, 'sync', this.renderBooks);
-    // this.renderBooks();
   },
   
   addBook: function (book) {
-    console.log("BookListShow#addBook");
     var itemView = new Shelvesy.Views.BookListItemShow({
       model: book
     });
@@ -19,7 +15,6 @@ Shelvesy.Views.BookListShow = Backbone.CompositeView.extend({
   },
   
   render: function () {
-    console.log("BookListShow#render");
     var content = this.template();
     this.$el.html(content);
     this.renderBooks();
@@ -27,7 +22,6 @@ Shelvesy.Views.BookListShow = Backbone.CompositeView.extend({
   },
   
   renderBooks: function () {
-    console.log("BookListShow#renderBooks");
     this.collection.each(this.addBook.bind(this));
   }
 });

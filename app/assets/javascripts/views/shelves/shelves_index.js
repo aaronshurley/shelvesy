@@ -6,12 +6,10 @@ Shelvesy.Views.ShelvesIndex = Backbone.CompositeView.extend({
   },
   
   initialize: function () {
-    console.log("ShelvesIndex#initialize");
     this.listenTo(this.collection, 'add remove sync', this.render);
   },
   
   render: function() {
-    console.log("ShelvesIndex#render");
     var content = this.template({
       shelves: this.collection
     });
@@ -21,7 +19,6 @@ Shelvesy.Views.ShelvesIndex = Backbone.CompositeView.extend({
   },
 
   renderFooter: function () {
-    console.log("ShelvesIndex#render");
     var formView = new Shelvesy.Views.ShelfForm({
       collection: this.collection
     });
@@ -30,8 +27,8 @@ Shelvesy.Views.ShelvesIndex = Backbone.CompositeView.extend({
   
   removeShelf: function (event) {
     event.preventDefault();
+    
     var $target = $(event.target);
-    console.log("clicked on " + $target.data("shelf-id"));
     
     var $target = $(event.target),
         shelfId = $target.data('shelf-id'),
