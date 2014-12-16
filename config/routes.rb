@@ -14,6 +14,5 @@ Shelvesy::Application.routes.draw do
       get 'find', on: :collection
     end
     resources :reviews
-    resources :comments
   end
 end
